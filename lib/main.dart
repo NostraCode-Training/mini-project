@@ -127,10 +127,67 @@ class Home extends StatelessWidget {
                   ],
                 ),
               ),
+              SizedBox(height: 20),
+              Text("Hi, What would you learn today?", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+
+              Column(children: [kursusApa(context, "VERB"), kursusApa(context, "Conversation")]),
             ],
           ),
         ),
       ),
     );
+  }
+}
+
+Widget kursusApa(BuildContext context, String judul) {
+  return Card(
+    margin: const EdgeInsets.only(bottom: 15),
+    child: ListTile(
+      leading: Container(
+        padding: const EdgeInsets.all(8),
+        decoration: BoxDecoration(color: Colors.blue[50], borderRadius: BorderRadius.circular(8)),
+
+        child: Icon(judul == "VERB" ? Icons.book : Icons.message, color: Colors.blueAccent),
+      ),
+
+      title: Text(judul, style: const TextStyle(fontWeight: FontWeight.bold)),
+      trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => HalamanDetail(judulMateri: judul)));
+      },
+    ),
+  );
+}
+
+class HalamanDetail extends StatelessWidget {
+  final String judulMateri;
+
+  const HalamanDetail({super.key, required this.judulMateri});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Learn $judulMateri")),
+      body: judulMateri == "VERB" ? const Verb() : const Conversation(),
+    );
+  }
+}
+
+class Verb extends StatelessWidget {
+  const Verb({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold();
+  }
+}
+
+class Conversation extends StatelessWidget {
+  const Conversation({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold();
   }
 }
