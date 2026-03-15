@@ -276,7 +276,141 @@ class Kerja2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    final List<Map<String, String>> verbList = [
+      {"Went": "Pergi"},
+      {"Ate": "Makan"},
+      {"Drank": "Minum"},
+      {"Saw": "Melihat"},
+      {"Bought": "Membeli"},
+      {"Gave": "Memberi"},
+      {"Took": "Mengambil"},
+      {"Slept": "Tidur"},
+      {"Came": "Datang"},
+      {"Said": "Berkata"},
+      {"Made": "Membuat"},
+      {"Wrote": "Menulis"},
+      {"Read": "Membaca"},
+      {"Spoke": "Berbicara"},
+      {"Felt": "Merasa"},
+    ];
+
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(20.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Card(
+            elevation: 2,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            child: Padding(
+              padding: const EdgeInsets.all(15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text("Apa itu Verb 2?", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                  const SizedBox(height: 10),
+                  const Text(
+                    "Verb 2 merupakan bentuk kata kerja masa lalu dalam bahasa Inggris. Bentuk ini menunjukkan bahwa suatu perbuatan sudah selesai dilakukan sebelum saat ini.\n\n"
+                    "Kegunaan utama Verb 2 adalah menceritakan peristiwa yang terjadi pada waktu lampau. Kamu menggunakannya saat berbicara tentang kejadian tadi pagi, kemarin, minggu lalu, atau masa kecil.\n\n"
+                    "Ciri utama penggunaan Verb 2 adalah langsung meletakkan kata kerja tersebut setelah subjek tanpa tambahan kata bantu lain.",
+                  ),
+                  const Divider(height: 30),
+                  const Text("1. Jenis Kata Kerja Verb 2", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                  const SizedBox(height: 10),
+                  const Text(
+                    "Regular Verbs (Beraturan)\n"
+                    "Paling mudah diingat karena cukup ditambah ed atau d di belakang kata.\n"
+                    "• Play -> Played\n"
+                    "• Watch -> Watched\n"
+                    "• Cook -> Cooked",
+                  ),
+                  const SizedBox(height: 15),
+                  const Text(
+                    "Irregular Verbs (Tidak Beraturan)\n"
+                    "Kata kerja ini berubah bentuk secara total dan harus dihafal karena tidak punya pola tetap:",
+                  ),
+                  const SizedBox(height: 10),
+
+                  // Tabel Irregular Verbs
+                  Table(
+                    border: TableBorder.all(color: Colors.grey.shade300),
+                    columnWidths: const {0: FixedColumnWidth(80), 1: FlexColumnWidth()},
+                    children: [
+                      const TableRow(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(8),
+                            child: Text("Verb 2", style: TextStyle(fontWeight: FontWeight.bold)),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(8),
+                            child: Text("Arti", style: TextStyle(fontWeight: FontWeight.bold)),
+                          ),
+                        ],
+                      ),
+                      ...verbList.map(
+                        (item) => TableRow(
+                          children: [
+                            Padding(padding: EdgeInsets.all(8), child: Text(item.keys.first)),
+                            Padding(padding: EdgeInsets.all(8), child: Text(item.values.first)),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  const Divider(height: 30),
+                  const Text("2. Rumus Cara Bicara", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                  const SizedBox(height: 5),
+                  const Text(
+                    "Subjek + Verb 2 + Keterangan Waktu",
+                    style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 10),
+                  const Text(
+                    "Kamu hanya perlu meletakkan subjek di depan kata kerja tersebut. Keterangan waktu sangat penting untuk menunjukkan bahwa kejadian itu sudah lewat.\n\n"
+                    "Contoh:\n"
+                    "• I went to the market yesterday.\n"
+                    "• I ate bread this morning.\n"
+                    "• She came to my house yesterday.\n"
+                    "• We saw a movie two days ago.",
+                  ),
+                  const Divider(height: 30),
+                  const Text(
+                    "3. Penanda Waktu (Time Signals)",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
+                  const SizedBox(height: 10),
+                  const Text(
+                    "• Yesterday: Kemarin\n"
+                    "• Last...: Yang lalu (Last night, Last week)\n"
+                    "• ...ago: Yang lalu (Two hours ago)\n"
+                    "• This morning: Tadi pagi\n"
+                    "• Just now: Baru saja",
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(height: 20),
+          SizedBox(
+            width: double.infinity,
+            height: 50,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.green, foregroundColor: Colors.white),
+              onPressed: () {},
+              child: const Text("sudah paham ✓"),
+            ),
+          ),
+          const SizedBox(height: 10),
+          SizedBox(
+            width: double.infinity,
+            height: 50,
+            child: OutlinedButton(onPressed: () {}, child: const Text("Selanjutnya")),
+          ),
+        ],
+      ),
+    );
   }
 }
 
