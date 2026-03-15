@@ -160,119 +160,93 @@ Widget kursusApa(BuildContext context, String judul) {
   );
 }
 
-class HalamanDetail extends StatelessWidget {
+class HalamanDetail extends StatefulWidget {
   final String judulMateri;
-
   const HalamanDetail({super.key, required this.judulMateri});
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Learn $judulMateri")),
-      body: judulMateri == "Vocabulary" ? const Verb() : const Conversation(),
-    );
-  }
+  State<HalamanDetail> createState() => _HalamanDetailState();
 }
 
-class Verb extends StatelessWidget {
-  const Verb({super.key});
+class _HalamanDetailState extends State<HalamanDetail> {
+  // Variabel untuk menyimpan tahap materi saat ini
+  int currentStep = 1;
+
+  @override
+  void initState() {
+    super.initState();
+    // Jika user klik Verb 2 dari awal, set step ke 2
+    if (widget.judulMateri == "Verb 2") currentStep = 2;
+    if (widget.judulMateri == "Verb 3") currentStep = 3;
+  }
+
+  void nextStep() {
+    setState(() {
+      if (currentStep < 3) {
+        currentStep++;
+      } else {
+        // Jika sudah di Kerja3, kembali ke halaman sebelumnya (Selesai)
+        Navigator.pop(context);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
+    // Tentukan widget mana yang tampil berdasarkan currentStep
+    Widget bodyContent;
+    if (currentStep == 1) {
+      bodyContent = Kerja1(onNext: nextStep);
+    } else if (currentStep == 2) {
+      bodyContent = Kerja2(onNext: nextStep);
+    } else {
+      bodyContent = Kerja3(onNext: nextStep);
+    }
+
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                width: screenWidth,
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(25),
-                  border: Border.all(color: Colors.black, width: 1),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("What are Verbs??", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-                    SizedBox(height: 10),
-                    Text(
-                      "Verb atau kata kerja adalah bagian paling penting dalam kalimat yang menunjukkan tindakan, perbuatan, atau keadaan. Dalam bahasa Inggris, kata kerja memiliki peran utama sebagai inti dari apa yang dilakukan oleh subjek. ",
-                      style: TextStyle(fontSize: 16, color: Colors.grey),
-                    ),
-                    SizedBox(height: 5),
-                    Text(
-                      'Berikut adalah gambaran umum mengenai pembagian kata kerja : ',
-                      style: TextStyle(fontSize: 16, color: Colors.grey),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 20),
-              Text("hai! What will you study first?", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-              Column(children: [lesson(context, 'Verb 1'), lesson(context, 'Verb 2')]),
-              Column(children: [lesson(context, 'Verb 3')]),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-Widget lesson(BuildContext context, String kelas) {
-  return Card(
-    margin: const EdgeInsets.only(bottom: 15),
-    child: ListTile(
-      leading: Container(
-        padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(color: Colors.blue[50], borderRadius: BorderRadius.circular(8)),
-
-        child: Icon(
-          kelas == "Verb 1" ? Icons.book : (kelas == "Verb 2" ? Icons.menu_book : Icons.book_online_sharp),
-          color: Colors.blueAccent,
-        ),
-      ),
-
-      title: Text(kelas, style: const TextStyle(fontWeight: FontWeight.bold)),
-      trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-
-      onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => Lessondetail(judulkelas: kelas)));
-      },
-    ),
-  );
-}
-
-class Lessondetail extends StatelessWidget {
-  final String judulkelas;
-  const Lessondetail({super.key, required this.judulkelas});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Learn $judulkelas')),
-      body: judulkelas == "Verb 1" ? const Kerja1() : (judulkelas == "Verb 2" ? const Kerja2() : const Kerja3()),
+      appBar: AppBar(title: Text('Learn Verb $currentStep')),
+      body: bodyContent,
     );
   }
 }
 
 class Kerja1 extends StatelessWidget {
-  const Kerja1({super.key});
+  final VoidCallback onNext;
+  const Kerja1({super.key, required this.onNext});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Text('data'));
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        children: [
+          // isi materi
+          const SizedBox(height: 20),
+          // Tombol Selanjutnya
+          const SizedBox(height: 20),
+          SizedBox(
+            width: double.infinity,
+            height: 50,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.green, foregroundColor: Colors.white),
+              onPressed: () {},
+              child: const Text("Tandai sebagai Selesai ✓"),
+            ),
+          ),
+          SizedBox(
+            width: double.infinity,
+            height: 50,
+            child: ElevatedButton(onPressed: onNext, child: const Text("Pelajaran Selanjutnya →")),
+          ),
+        ],
+      ),
+    );
   }
 }
 
 class Kerja2 extends StatelessWidget {
-  const Kerja2({super.key});
+  final VoidCallback onNext;
+  const Kerja2({super.key, required this.onNext});
 
   @override
   Widget build(BuildContext context) {
@@ -399,14 +373,14 @@ class Kerja2 extends StatelessWidget {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Colors.green, foregroundColor: Colors.white),
               onPressed: () {},
-              child: const Text("sudah paham ✓"),
+              child: const Text("Tandai sebagai Selesai ✓"),
             ),
           ),
           const SizedBox(height: 10),
           SizedBox(
             width: double.infinity,
             height: 50,
-            child: OutlinedButton(onPressed: () {}, child: const Text("Selanjutnya")),
+            child: OutlinedButton(onPressed: onNext, child: const Text("Pelajaran Selanjutnya → ")),
           ),
         ],
       ),
@@ -415,11 +389,31 @@ class Kerja2 extends StatelessWidget {
 }
 
 class Kerja3 extends StatelessWidget {
-  const Kerja3({super.key});
+  final VoidCallback onNext;
+  const Kerja3({super.key, required this.onNext});
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          // isi materi
+          const SizedBox(height: 20),
+          const SizedBox(height: 20),
+          SizedBox(
+            width: double.infinity,
+            height: 50,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.green, foregroundColor: Colors.white),
+              onPressed: () {},
+              child: const Text("Tandai sebagai Selesai ✓"),
+            ),
+          ),
+          ElevatedButton(onPressed: onNext, child: const Text("Selesai & Keluar ✓")),
+        ],
+      ),
+    );
   }
 }
 
