@@ -139,6 +139,57 @@ class Home extends StatelessWidget {
   }
 }
 
+class Verb extends StatelessWidget {
+  const Verb({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: screenWidth,
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(25),
+                  border: Border.all(color: Colors.black, width: 1),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("What are Verbs??", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                    SizedBox(height: 10),
+                    Text(
+                      "Verb atau kata kerja adalah bagian paling penting dalam kalimat yang menunjukkan tindakan, perbuatan, atau keadaan. Dalam bahasa Inggris, kata kerja memiliki peran utama sebagai inti dari apa yang dilakukan oleh subjek. ",
+                      style: TextStyle(fontSize: 16, color: Colors.grey),
+                    ),
+                    SizedBox(height: 5),
+                    Text(
+                      'Berikut adalah gambaran umum mengenai pembagian kata kerja : ',
+                      style: TextStyle(fontSize: 16, color: Colors.grey),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20),
+              Text("hai! What will you study first?", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              Column(children: [kursusApa(context, 'Verb 1'), kursusApa(context, 'Verb 2')]),
+              Column(children: [kursusApa(context, 'Verb 3')]),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 Widget kursusApa(BuildContext context, String judul) {
   return Card(
     margin: const EdgeInsets.only(bottom: 15),
@@ -153,8 +204,13 @@ Widget kursusApa(BuildContext context, String judul) {
       title: Text(judul, style: const TextStyle(fontWeight: FontWeight.bold)),
       trailing: const Icon(Icons.arrow_forward_ios, size: 16),
 
+      // Ubah bagian onTap di dalam fungsi kursusApa:
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => HalamanDetail(judulMateri: judul)));
+        if (judul == "Vocabulary") {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => const Verb()));
+        } else {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => HalamanDetail(judulMateri: judul)));
+        }
       },
     ),
   );
@@ -400,16 +456,7 @@ class Kerja3 extends StatelessWidget {
         children: [
           // isi materi
           const SizedBox(height: 20),
-          const SizedBox(height: 20),
-          SizedBox(
-            width: double.infinity,
-            height: 50,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.green, foregroundColor: Colors.white),
-              onPressed: () {},
-              child: const Text("Tandai sebagai Selesai ✓"),
-            ),
-          ),
+
           ElevatedButton(onPressed: onNext, child: const Text("Selesai & Keluar ✓")),
         ],
       ),
