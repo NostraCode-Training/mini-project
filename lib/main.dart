@@ -215,8 +215,8 @@ class Verb extends StatelessWidget {
               ),
               SizedBox(height: 20),
               Text("hai! What will you study first?", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-              Column(children: [lesson(context, 'Verb1'), lesson(context, 'Verb2')]),
-              Column(children: [lesson(context, 'Verb3')]),
+              Column(children: [lesson(context, 'Verb 1'), lesson(context, 'Verb 2')]),
+              Column(children: [lesson(context, 'Verb 3')]),
             ],
           ),
         ),
@@ -267,7 +267,7 @@ class Kerja1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(body: Text('data'));
   }
 }
 
