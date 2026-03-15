@@ -130,7 +130,7 @@ class Home extends StatelessWidget {
               SizedBox(height: 20),
               Text("Hi, What would you learn today?", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
 
-              Column(children: [kursusApa(context, "VERB"), kursusApa(context, "Conversation")]),
+              Column(children: [kursusApa(context, "Vocabulary"), kursusApa(context, "Conversation")]),
             ],
           ),
         ),
@@ -147,7 +147,7 @@ Widget kursusApa(BuildContext context, String judul) {
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(color: Colors.blue[50], borderRadius: BorderRadius.circular(8)),
 
-        child: Icon(judul == "VERB" ? Icons.book : Icons.message, color: Colors.blueAccent),
+        child: Icon(judul == "Vocabulary" ? Icons.book : Icons.message, color: Colors.blueAccent),
       ),
 
       title: Text(judul, style: const TextStyle(fontWeight: FontWeight.bold)),
@@ -169,7 +169,7 @@ class HalamanDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Learn $judulMateri")),
-      body: judulMateri == "VERB" ? const Verb() : const Conversation(),
+      body: judulMateri == "Vocabulary" ? const Verb() : const Conversation(),
     );
   }
 }
@@ -179,7 +179,113 @@ class Verb extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: screenWidth,
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(25),
+                  border: Border.all(color: Colors.black, width: 1),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("What are Verbs??", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                    SizedBox(height: 10),
+                    Text(
+                      "Verb atau kata kerja adalah bagian paling penting dalam kalimat yang menunjukkan tindakan, perbuatan, atau keadaan. Dalam bahasa Inggris, kata kerja memiliki peran utama sebagai inti dari apa yang dilakukan oleh subjek. ",
+                      style: TextStyle(fontSize: 16, color: Colors.grey),
+                    ),
+                    SizedBox(height: 5),
+                    Text(
+                      'Berikut adalah gambaran umum mengenai pembagian kata kerja : ',
+                      style: TextStyle(fontSize: 16, color: Colors.grey),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20),
+              Text("hai! What will you study first?", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              Column(children: [lesson(context, 'Verb1'), lesson(context, 'Verb2')]),
+              Column(children: [lesson(context, 'Verb3')]),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+Widget lesson(BuildContext context, String kelas) {
+  return Card(
+    margin: const EdgeInsets.only(bottom: 15),
+    child: ListTile(
+      leading: Container(
+        padding: const EdgeInsets.all(8),
+        decoration: BoxDecoration(color: Colors.blue[50], borderRadius: BorderRadius.circular(8)),
+
+        child: Icon(
+          kelas == "Verb 1" ? Icons.book : (kelas == "Verb 2" ? Icons.menu_book : Icons.book_online_sharp),
+          color: Colors.blueAccent,
+        ),
+      ),
+
+      title: Text(kelas, style: const TextStyle(fontWeight: FontWeight.bold)),
+      trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => Lessondetail(judulkelas: kelas)));
+      },
+    ),
+  );
+}
+
+class Lessondetail extends StatelessWidget {
+  final String judulkelas;
+  const Lessondetail({super.key, required this.judulkelas});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Learn $judulkelas')),
+      body: judulkelas == "Verb 1" ? const Kerja1() : (judulkelas == "Verb 2" ? const Kerja2() : const Kerja3()),
+    );
+  }
+}
+
+class Kerja1 extends StatelessWidget {
+  const Kerja1({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+class Kerja2 extends StatelessWidget {
+  const Kerja2({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+class Kerja3 extends StatelessWidget {
+  const Kerja3({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }
 
