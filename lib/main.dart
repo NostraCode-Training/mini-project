@@ -272,14 +272,126 @@ class Kerja1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<Map<String, String>> verbList = [
+      {"Go": "Pergi"},
+      {"Eat": "Makan"},
+      {"Drink": "Minum"},
+      {"Study": "Belajar"},
+      {"Buy": "Membeli"},
+      {"Take": "Mengambil"},
+      {"Sleep": "Tidur"},
+      {"Make": "Membuat"},
+      {"Read": "Membaca"},
+      {"Speak": "Berbicara"},
+    ];
+
     return SingleChildScrollView(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20.0),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          // isi materi
+          Card(
+            elevation: 2,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            child: Padding(
+              padding: const EdgeInsets.all(15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text("Verb 1 (Present Tense)", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                  const SizedBox(height: 10),
+                  const Text(
+                    "Verb 1 merupakan bentuk kata kerja dasar dalam bahasa Inggris. Bentuk ini digunakan untuk menunjukkan bahwa suatu perbuatan adalah sebuah fakta, kebiasaan, atau rutinitas yang dilakukan secara berulang.\n\n"
+                    "Kegunaan utamanya adalah menceritakan aktivitas keseharian seperti jadwal kegiatan, hobi, atau agenda yang dilakukan secara reguler.",
+                  ),
+                  const Divider(height: 50),
+
+                  const Text("1. Jenis Kata Kerja Verb 1", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                  const SizedBox(height: 10),
+                  const Text(
+                    'Ciri utama penggunaan Verb 1 adalah kata kerja ini tetap pada bentuk aslinya, atau mendapatkan tambahan -s/-es jika subjeknya adalah orang ketiga tunggal (He, She, It). Artinya, dalam penggunaannya perlu untuk memperhatikan siapa yang melakukan pekerjaan/aktivitas tersebut agar tidak tertukar:\n',
+                  ),
+                  const Text(
+                    "• Subjek Jamak (I, You, We, They): Kata kerja tetap pada bentuk asli tanpa tambahan apa pun.\n"
+                    "  Contoh: I play, We study.\n"
+                    "• Subjek Tunggal (He, She, It): Kata kerja harus ditambah akhiran -s atau -es di belakangnya.\n"
+                    "  Contoh: She plays, He studies.",
+                  ),
+                  const SizedBox(height: 20),
+                  const Text('Tabel contoh Verb 1:', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                  const SizedBox(height: 10),
+
+                  Table(
+                    border: TableBorder.all(color: Colors.grey.shade300),
+                    columnWidths: const {0: FixedColumnWidth(100), 1: FlexColumnWidth()},
+                    children: [
+                      const TableRow(
+                        decoration: BoxDecoration(color: Color(0xFFF5F5F5)),
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(8),
+                            child: Text("Verb 1", style: TextStyle(fontWeight: FontWeight.bold)),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(8),
+                            child: Text("Arti", style: TextStyle(fontWeight: FontWeight.bold)),
+                          ),
+                        ],
+                      ),
+
+                      for (var item in verbList)
+                        TableRow(
+                          children: [
+                            Padding(padding: const EdgeInsets.all(8), child: Text(item.keys.first)),
+                            Padding(padding: const EdgeInsets.all(8), child: Text(item.values.first)),
+                          ],
+                        ),
+                    ],
+                  ),
+
+                  const Divider(height: 30),
+                  const Text("2. Rumus Cara Bicara", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                  const SizedBox(height: 10),
+                  const Text(
+                    "Dalam percakapan mengenai keseharian, susunannya sangat sederhana dan efisien. Cukup letakkan Verb 1 tepat setelah subjek.",
+                  ),
+                  const SizedBox(height: 10),
+                  const Text(
+                    "[ Subjek + Verb 1 (s/es) + Keterangan ]",
+                    style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 10),
+                  const Text(
+                    "Urutannya adalah Subjek (orang yang melakukan) diikuti oleh Verb 1, kemudian keterangan tambahan atau waktu untuk memperjelas rutinitas tersebut.\n\n"
+                    "Contoh:\n"
+                    "• I wake up early every day.\n"
+                    "• She cooks lunch for the family.\n"
+                    "• We clean the room every weekend.\n"
+                    "• The train arrives at 8 AM.",
+                  ),
+                  const Divider(height: 30),
+
+                  const Text(
+                    "3. Penanda Waktu (Time Signals)",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
+                  const SizedBox(height: 10),
+                  const Text(
+                    "Agar lawan bicara mengerti bahwa hal yang kamu bicarakan adalah sebuah kebiasaan atau rutinitas tetap, gunakan kata-kata penanda frekuensi di bawah ini:\n"
+                    "• Every...: Setiap... (Every day, Every week)\n"
+                    "• In the...: Di waktu... (In the morning)\n"
+                    "• Always: Selalu\n"
+                    "• Usually: Biasanya\n"
+                    "• Sometimes: Kadang-kadang",
+                  ),
+                ],
+              ),
+            ),
+          ),
+
           const SizedBox(height: 20),
-          // Tombol Selanjutnya
-          const SizedBox(height: 20),
+
+          // Tombol Selesai
           SizedBox(
             width: double.infinity,
             height: 50,
@@ -289,11 +401,15 @@ class Kerja1 extends StatelessWidget {
               child: const Text("Tandai sebagai Selesai ✓"),
             ),
           ),
+          const SizedBox(height: 10),
+
+          // Tombol Next
           SizedBox(
             width: double.infinity,
             height: 50,
-            child: ElevatedButton(onPressed: onNext, child: const Text("Pelajaran Selanjutnya →")),
+            child: OutlinedButton(onPressed: onNext, child: const Text("Pelajaran Selanjutnya →")),
           ),
+          const SizedBox(height: 30),
         ],
       ),
     );
