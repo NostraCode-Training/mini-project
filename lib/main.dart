@@ -98,7 +98,6 @@ class Home extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 30),
-              // ... (sisanya tetap sama)
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
@@ -145,7 +144,6 @@ class Verb extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -215,83 +213,46 @@ Widget kursusApa(BuildContext context, String judul) {
   );
 }
 
-// --- 1. DETAIL KHUSUS VERB ---
-class HalamanDetailVerb extends StatefulWidget {
+class HalamanDetailVerb extends StatelessWidget {
   final String judulMateri;
-  const HalamanDetailVerb({super.key, required this.judulMateri});
+  final ValueNotifier<int> _stepNotifier = ValueNotifier<int>(1);
 
-  @override
-  State<HalamanDetailVerb> createState() => _HalamanDetailVerbState();
-}
-
-class _HalamanDetailVerbState extends State<HalamanDetailVerb> {
-  int step = 1;
-
-  void next() {
-    setState(() {
-      if (step < 3) {
-        step++;
-      } else {
-        Navigator.pop(context);
-      }
-    });
-  }
+  HalamanDetailVerb({super.key, required this.judulMateri});
 
   @override
   Widget build(BuildContext context) {
-    // Memilih widget berdasarkan step
-    Widget content;
-    if (step == 1) {
-      content = Kerja1(onNext: next);
-    } else if (step == 2) {
-      content = Kerja2(onNext: next);
-    } else {
-      content = Kerja3(onNext: next);
-    }
-
     return Scaffold(
-      appBar: AppBar(title: Text(widget.judulMateri)),
-      body: content,
+      appBar: AppBar(title: Text(judulMateri)),
+      body: ValueListenableBuilder<int>(
+        valueListenable: _stepNotifier,
+        builder: (context, step, _) {
+          if (step == 1) return Kerja1(onNext: () => _stepNotifier.value++);
+          if (step == 2) return Kerja2(onNext: () => _stepNotifier.value++);
+          return Kerja3(onNext: () => Navigator.pop(context));
+        },
+      ),
     );
   }
 }
 
-class HalamanDetailConversation extends StatefulWidget {
+class HalamanDetailConversation extends StatelessWidget {
   final String judulMateri;
-  const HalamanDetailConversation({super.key, required this.judulMateri});
+  final ValueNotifier<int> _stepNotifier = ValueNotifier<int>(1);
 
-  @override
-  State<HalamanDetailConversation> createState() => _HalamanDetailConversationState();
-}
-
-class _HalamanDetailConversationState extends State<HalamanDetailConversation> {
-  int step = 1;
-
-  void next() {
-    setState(() {
-      if (step < 3) {
-        step++;
-      } else {
-        Navigator.pop(context);
-      }
-    });
-  }
+  HalamanDetailConversation({super.key, required this.judulMateri});
 
   @override
   Widget build(BuildContext context) {
-    // INI KUNCI NYA: Pastikan memanggil PERCAKAPAN
-    Widget content;
-    if (step == 1) {
-      content = Percakapan1(onNext: next);
-    } else if (step == 2) {
-      content = Percakapan2(onNext: next);
-    } else {
-      content = Percakapan3(onNext: next);
-    }
-
     return Scaffold(
-      appBar: AppBar(title: Text(widget.judulMateri)),
-      body: content,
+      appBar: AppBar(title: Text(judulMateri)),
+      body: ValueListenableBuilder<int>(
+        valueListenable: _stepNotifier,
+        builder: (context, step, _) {
+          if (step == 1) return Percakapan1(onNext: () => _stepNotifier.value++);
+          if (step == 2) return Percakapan2(onNext: () => _stepNotifier.value++);
+          return Percakapan3(onNext: () => Navigator.pop(context));
+        },
+      ),
     );
   }
 }
@@ -618,7 +579,7 @@ class Kerja3 extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text("Apa itu Verb 2?", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                  const Text("Apa itu Verb 3?", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
                   const SizedBox(height: 10),
                   const Text(
                     "Verb 3 adalah bentuk kata kerja ketiga dalam bahasa Inggris.\n"
@@ -711,15 +672,9 @@ class Kerja3 extends StatelessWidget {
             height: 50,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Colors.green, foregroundColor: Colors.white),
-              onPressed: () {},
-              child: const Text("Tandai sebagai Selesai ✓"),
+              onPressed: onNext,
+              child: const Text("Selesai & Keluar ✓"),
             ),
-          ),
-          const SizedBox(height: 10),
-          SizedBox(
-            width: double.infinity,
-            height: 50,
-            child: ElevatedButton(onPressed: onNext, child: const Text("Selesai & Keluar ✓")),
           ),
         ],
       ),
