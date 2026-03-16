@@ -182,16 +182,6 @@ class Verb extends StatelessWidget {
               Text("hai! What will you study first?", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
               Column(children: [kursusApa(context, 'Verb 1'), kursusApa(context, 'Verb 2')]),
               Column(children: [kursusApa(context, 'Verb 3')]),
-              Column(
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text('Back'),
-                  ),
-                ],
-              ),
             ],
           ),
         ),
@@ -204,54 +194,44 @@ Widget kursusApa(BuildContext context, String judul) {
   return Card(
     margin: const EdgeInsets.only(bottom: 15),
     child: ListTile(
-      leading: Container(
-        padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(color: Colors.blue[50], borderRadius: BorderRadius.circular(8)),
-
-        child: Icon(judul == "Vocabulary" ? Icons.book : Icons.message, color: Colors.blueAccent),
-      ),
-
+      leading: Icon(judul.contains("Verb") ? Icons.book : Icons.message, color: Colors.blueAccent),
       title: Text(judul, style: const TextStyle(fontWeight: FontWeight.bold)),
       trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-
-      // Ubah bagian onTap di dalam fungsi kursusApa:
       onTap: () {
+        // Logika Navigasi yang benar
         if (judul == "Vocabulary") {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const Verb()));
+          Navigator.push(context, MaterialPageRoute(builder: (_) => const Verb()));
+        } else if (judul == "Conversation") {
+          Navigator.push(context, MaterialPageRoute(builder: (_) => const Conversation()));
+        } else if (judul.contains("Verb")) {
+          // Menuju ke detail khusus Verb
+          Navigator.push(context, MaterialPageRoute(builder: (_) => HalamanDetailVerb(judulMateri: judul)));
         } else {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => HalamanDetail(judulMateri: judul)));
+          // Menuju ke detail khusus Conversation
+          Navigator.push(context, MaterialPageRoute(builder: (_) => HalamanDetailConversation(judulMateri: judul)));
         }
       },
     ),
   );
 }
 
-class HalamanDetail extends StatefulWidget {
+// --- 1. DETAIL KHUSUS VERB ---
+class HalamanDetailVerb extends StatefulWidget {
   final String judulMateri;
-  const HalamanDetail({super.key, required this.judulMateri});
+  const HalamanDetailVerb({super.key, required this.judulMateri});
 
   @override
-  State<HalamanDetail> createState() => _HalamanDetailState();
+  State<HalamanDetailVerb> createState() => _HalamanDetailVerbState();
 }
 
-class _HalamanDetailState extends State<HalamanDetail> {
-  // Variabel untuk menyimpan tahap materi saat ini
-  int currentStep = 1;
+class _HalamanDetailVerbState extends State<HalamanDetailVerb> {
+  int step = 1;
 
-  @override
-  void initState() {
-    super.initState();
-    // Jika user klik Verb 2 dari awal, set step ke 2
-    if (widget.judulMateri == "Verb 2") currentStep = 2;
-    if (widget.judulMateri == "Verb 3") currentStep = 3;
-  }
-
-  void nextStep() {
+  void next() {
     setState(() {
-      if (currentStep < 3) {
-        currentStep++;
+      if (step < 3) {
+        step++;
       } else {
-        // Jika sudah di Kerja3, kembali ke halaman sebelumnya (Selesai)
         Navigator.pop(context);
       }
     });
@@ -259,19 +239,59 @@ class _HalamanDetailState extends State<HalamanDetail> {
 
   @override
   Widget build(BuildContext context) {
-    // Tentukan widget mana yang tampil berdasarkan currentStep
-    Widget bodyContent;
-    if (currentStep == 1) {
-      bodyContent = Kerja1(onNext: nextStep);
-    } else if (currentStep == 2) {
-      bodyContent = Kerja2(onNext: nextStep);
+    // Memilih widget berdasarkan step
+    Widget content;
+    if (step == 1) {
+      content = Kerja1(onNext: next);
+    } else if (step == 2) {
+      content = Kerja2(onNext: next);
     } else {
-      bodyContent = Kerja3(onNext: nextStep);
+      content = Kerja3(onNext: next);
     }
 
     return Scaffold(
-      appBar: AppBar(title: Text('Learn Verb $currentStep')),
-      body: bodyContent,
+      appBar: AppBar(title: Text(widget.judulMateri)),
+      body: content,
+    );
+  }
+}
+
+class HalamanDetailConversation extends StatefulWidget {
+  final String judulMateri;
+  const HalamanDetailConversation({super.key, required this.judulMateri});
+
+  @override
+  State<HalamanDetailConversation> createState() => _HalamanDetailConversationState();
+}
+
+class _HalamanDetailConversationState extends State<HalamanDetailConversation> {
+  int step = 1;
+
+  void next() {
+    setState(() {
+      if (step < 3) {
+        step++;
+      } else {
+        Navigator.pop(context);
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // INI KUNCI NYA: Pastikan memanggil PERCAKAPAN
+    Widget content;
+    if (step == 1) {
+      content = Percakapan1(onNext: next);
+    } else if (step == 2) {
+      content = Percakapan2(onNext: next);
+    } else {
+      content = Percakapan3(onNext: next);
+    }
+
+    return Scaffold(
+      appBar: AppBar(title: Text(widget.judulMateri)),
+      body: content,
     );
   }
 }
@@ -712,6 +732,124 @@ class Conversation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    double screenWidth = MediaQuery.of(context).size.width;
+
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Kartu Penjelasan
+              Container(
+                width: screenWidth,
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(25),
+                  border: Border.all(color: Colors.black, width: 1),
+                ),
+                child: const Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("What is Conversation?", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                    SizedBox(height: 10),
+                    Text(
+                      "Conversation adalah kegiatan interaksi verbal (bicara) atau tulisan antara dua orang atau lebih untuk bertukar ide, informasi, atau perasaan. Di sini, kita akan menerapkan Verb 1, 2, dan 3 ke dalam dialog sehari-hari agar kamu lebih mahir.",
+                      style: TextStyle(fontSize: 16, color: Colors.grey),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 20),
+              const Text("Hi! Ready to practice?", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              const SizedBox(height: 10),
+
+              // Menu Latihan Conversation
+              kursusApa(context, 'Daily Routine (Verb 1)'),
+              kursusApa(context, 'Past Experience (Verb 2)'),
+              kursusApa(context, 'Finished Tasks (Verb 3)'),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Percakapan1 extends StatelessWidget {
+  final VoidCallback onNext;
+  const Percakapan1({super.key, required this.onNext});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        // isi materi
+        const SizedBox(height: 20),
+        SizedBox(
+          width: double.infinity,
+          height: 50,
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.green, foregroundColor: Colors.white),
+            onPressed: () {},
+            child: const Text("Tandai sebagai Selesai ✓"),
+          ),
+        ),
+        const SizedBox(height: 10),
+        SizedBox(
+          width: double.infinity,
+          height: 50,
+          child: OutlinedButton(onPressed: onNext, child: const Text("Pelajaran Selanjutnya → ")),
+        ),
+      ],
+    );
+  }
+}
+
+class Percakapan2 extends StatelessWidget {
+  final VoidCallback onNext;
+  const Percakapan2({super.key, required this.onNext});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        // isi materi
+        const SizedBox(height: 20),
+        SizedBox(
+          width: double.infinity,
+          height: 50,
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.green, foregroundColor: Colors.white),
+            onPressed: () {},
+            child: const Text("Tandai sebagai Selesai ✓"),
+          ),
+        ),
+        const SizedBox(height: 10),
+        SizedBox(
+          width: double.infinity,
+          height: 50,
+          child: OutlinedButton(onPressed: onNext, child: const Text("Pelajaran Selanjutnya → ")),
+        ),
+      ],
+    );
+  }
+}
+
+class Percakapan3 extends StatelessWidget {
+  final VoidCallback onNext;
+  const Percakapan3({super.key, required this.onNext});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        // isi materi
+        const SizedBox(height: 20),
+        ElevatedButton(onPressed: onNext, child: const Text("Selesai & Keluar ✓")),
+      ],
+    );
   }
 }
