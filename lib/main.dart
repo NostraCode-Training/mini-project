@@ -182,6 +182,16 @@ class Verb extends StatelessWidget {
               Text("hai! What will you study first?", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
               Column(children: [kursusApa(context, 'Verb 1'), kursusApa(context, 'Verb 2')]),
               Column(children: [kursusApa(context, 'Verb 3')]),
+              Column(
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text('Back'),
+                  ),
+                ],
+              ),
             ],
           ),
         ),
@@ -566,14 +576,131 @@ class Kerja3 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          // isi materi
-          const SizedBox(height: 20),
+    final List<Map<String, String>> verbList = [
+      {"Gone": "Pergi"},
+      {"Eaten": "Makan"},
+      {"Drunk": "Minum"},
+      {"Seen": "Melihat"},
+      {"Written": "Menulis"},
+      {"Spoken": "Berbicara"},
+    ];
 
-          ElevatedButton(onPressed: onNext, child: const Text("Selesai & Keluar ✓")),
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(20.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Card(
+            elevation: 2,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            child: Padding(
+              padding: const EdgeInsets.all(15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text("Apa itu Verb 2?", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                  const SizedBox(height: 10),
+                  const Text(
+                    "Verb 3 adalah bentuk kata kerja ketiga dalam bahasa Inggris.\n"
+                    " Berbeda dengan Verb 2 yang berdiri sendiri untuk menceritakan masa lalu,\n"
+                    " Verb 3 biasanya membutuhkan kata bantu (auxiliary verb) seperti have, has, atau had agar kalimatnya sempurna.",
+                  ),
+                  Divider(height: 30),
+                  Text("1. Jenis Kata Kerja Verb 3", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                  SizedBox(height: 10),
+                  Text(
+                    "Regular Verbs (Beraturan)\n"
+                    "Kabar baiknya, bentuknya sama persis dengan Verb 2, yaitu cukup ditambah -ed atau -d di belakang kata.\n"
+                    "• Play -> Played\n"
+                    "• Watch -> Watched\n"
+                    "• Cook -> Cooked",
+                  ),
+                  SizedBox(height: 15),
+                  Text(
+                    "Irregular Verbs (Tidak Beraturan)\n"
+                    "Ini yang perlu dihafal karena perubahannya bisa sangat berbeda dari bentuk aslinya atau bentuk Verb 2-nya:",
+                  ),
+                  const SizedBox(height: 10),
+
+                  // Tabel Irregular Verbs
+                  Table(
+                    border: TableBorder.all(color: Colors.grey.shade300),
+                    columnWidths: const {0: FixedColumnWidth(80), 1: FlexColumnWidth()},
+                    children: [
+                      const TableRow(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(8),
+                            child: Text("Verb 3", style: TextStyle(fontWeight: FontWeight.bold)),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(8),
+                            child: Text("Arti", style: TextStyle(fontWeight: FontWeight.bold)),
+                          ),
+                        ],
+                      ),
+                      ...verbList.map(
+                        (item) => TableRow(
+                          children: [
+                            Padding(padding: EdgeInsets.all(8), child: Text(item.keys.first)),
+                            Padding(padding: EdgeInsets.all(8), child: Text(item.values.first)),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  Divider(height: 30),
+                  Text("2. Rumus Cara Bicara", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                  SizedBox(height: 5),
+                  Text(
+                    "Subjek + Have/Has + Verb 3 + Keterangan",
+                    style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    "Jika Verb 2 langsung diletakkan setelah subjek, Verb 3 butuh jembatan yaitu have atau has.\n"
+                    "Have digunakan untuk subjek: I, You, We, They.\n"
+                    "Has digunakan untuk subjek: She, He, It.\n"
+                    "Contoh:\n\n"
+                    "• I have finished my homework_(Saya telah menyelesaikan pekerjaan rumah saya)\n"
+                    "• She has visited Paris twice_(Dia telah mengunjungi Paris dua kali)\n"
+                    "• They have already eaten their lunch_(Mereka sudah makan siang)\n"
+                    "• He has bought a new laptop_(Dia telah membeli laptop baru)",
+                  ),
+                  const Divider(height: 30),
+                  const Text(
+                    "3. Penanda Waktu (Time Signals)",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
+                  const SizedBox(height: 10),
+                  const Text(
+                    "Penanda waktu untuk Verb 3 (dalam bentuk Perfect Tense) agak berbeda dengan Verb 2 yang spesifik seperti yesterday atau ago. Verb 3 sering menggunakan:\n\n"
+                    "•	Just: Baru saja (Mirip dengan just now ).\n"
+                    "•	Yet: Belum (untuk kalimat negatif).\n"
+                    "•	Ever: Pernah\n"
+                    "•	Since: Sejak",
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(height: 20),
+          SizedBox(
+            width: double.infinity,
+            height: 50,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.green, foregroundColor: Colors.white),
+              onPressed: () {},
+              child: const Text("Tandai sebagai Selesai ✓"),
+            ),
+          ),
+          const SizedBox(height: 10),
+          SizedBox(
+            width: double.infinity,
+            height: 50,
+            child: ElevatedButton(onPressed: onNext, child: const Text("Selesai & Keluar ✓")),
+          ),
         ],
       ),
     );
