@@ -587,9 +587,9 @@ class Kerja3 extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text("Apa itu Verb 3?", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-                  const SizedBox(height: 10),
-                  const Text(
+                  Text("Apa itu Verb 3?", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                  SizedBox(height: 10),
+                  Text(
                     "Verb 3 adalah bentuk kata kerja ketiga dalam bahasa Inggris.\n"
                     " Berbeda dengan Verb 2 yang berdiri sendiri untuk menceritakan masa lalu,\n"
                     " Verb 3 biasanya membutuhkan kata bantu (auxiliary verb) seperti have, has, atau had agar kalimatnya sempurna.",
@@ -611,7 +611,6 @@ class Kerja3 extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
 
-                  // Tabel Irregular Verbs
                   Table(
                     border: TableBorder.all(color: Colors.grey.shade300),
                     columnWidths: const {0: FixedColumnWidth(80), 1: FlexColumnWidth()},
@@ -829,17 +828,100 @@ class Percakapan3 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('fininshed Task (verb 3)')),
-      body: Column(
-        children: [
-          // isi materi
-          const SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Conversation()));
-            },
-            child: const Text("Selesai & Keluar ✓"),
-          ),
-        ],
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(20),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Card(
+              elevation: 2,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(15)),
+              child: Padding(
+                padding: EdgeInsets.all(15),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '1. Kapan Digunakan (When to Use)',
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      'Verb 3 digunakan untuk menyatakan tindakan yang sudah selesai dilakukan atau kejadian yang memiliki hubungan dengan masa sekarang.\n\n'
+                      "•	Kejadian yang Baru Saja Selesai (Present Perfect): Digunakan untuk membahas sesuatu yang sudah terjadi dan hasilnya masih terasa atau penting saat ini.\n"
+                      ""
+                      "o	Contoh: I have finished my homework\n\n"
+                      "•	Pengalaman Hidup: Menyatakan hal yang pernah atau belum pernah dilakukan seumur hidup tanpa menyebutkan waktu spesifik.\n"
+                      "o	Contoh: She has visited Bali three times.\n\n"
+                      "•	Kalimat Pasif (Passive Voice): Digunakan ketika subjek dikenai tindakan, bukan melakukan tindakan.\n"
+                      "o	Contoh: The cake was eaten by my brother.",
+                    ),
+                    Divider(height: 40),
+                    Text(
+                      '2. Aturan Penting Kata Have / Has',
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      'Aturan utama dalam menggunakan Verb 3 pada kalimat masa kini (Present Perfect) adalah penggunaan kata bantu Have atau Has.\n\n'
+                      '•	Have (untuk I, You, We, They): Digunakan dalam kalimat positif, negatif, dan tanya.\n'
+                      '•	Has (untuk He, She, It): Digunakan untuk subjek tunggal orang ketiga.\n'
+                      '•	Bentuk Tetap: Berbeda dengan Verb 1, dalam kalimat tanya atau negatif, kata kerja tetap menggunakan Verb 3 (tidak kembali ke bentuk dasar).\n'
+                      '•	Penekanan Utama: Verb 3 selalu berpasangan dengan Have/Has/Had atau To Be (am/is/are/was/were). Tidak bisa berdiri sendiri sebagai kata kerja utama tanpa pendamping.',
+                    ),
+                    Divider(height: 40),
+                    Text('3. Contoh Penggunaan', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                    SizedBox(height: 10),
+                    Text(
+                      '•	Have (untuk I/You/We/They):\n'
+                      'o	"They have gone to London." (Bukan: They have go)\n\n'
+                      '•	Has (untuk He/She/It):\n'
+                      'o	"Has he taken his medicine?" (Bukan: Has he take?)',
+                    ),
+                    Divider(height: 40),
+                    Text(
+                      '4. Merespon Pernyataan (Statement)',
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      'Dalam percakapan santai tentang pengalaman atau hal yang sudah dilakukan:\n'
+                      'Jika lawan bicara memberikan pernyataan tentang apa yang sudah mereka lakukan, Anda bisa merespon dengan memberikan informasi tambahan menggunakan Have/Has + Verb 3 untuk membandingkan pengalaman Anda.\n\n'
+                      'Contoh\n'
+                      'o	Toni: I have watched that movie twice.\n'
+                      'o	Rani: Really? I havent seen it yet.',
+                    ),
+                    Divider(height: 39),
+                    Text(
+                      '5. Menjawab Pertanyaan (Have/Has)',
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      'Jika lawan bicara bertanya menggunakan kata Have atau Has, gunakan pola konfirmasi berikut:\n\n'
+                      '•	Jawaban Positif: Gunakan Yes diikuti informasi lengkap dengan Have/Has + Verb 3.\n'
+                      'o	Contoh: "Yes, I have cleaned the room.\n\n'
+                      '•	Jawaban Negatif: Gunakan No diikuti pola Have not (Havent) / Has not (Hasnt) dan tetap gunakan Verb 3.\n'
+                      'o	Contoh: No, she hasnt called me.\n\n'
+                      '•	Konfirmasi Cepat: Gunakan "Yes, I have" atau "No, I havent untuk jawaban singkat.',
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Conversation()));
+                },
+                child: const Text('Selesai ✓ & keluar'),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
