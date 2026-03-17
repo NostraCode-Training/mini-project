@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mini_project/liastu.dart';
 
 // 1. Variabel Global untuk menyimpan indeks yang aktif
 final ValueNotifier<int> _indexNotifier = ValueNotifier<int>(0);
@@ -180,6 +181,13 @@ class Verb extends StatelessWidget {
               Text("hai! What will you study first?", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
               Column(children: [kursusApa(context, 'Verb 1'), kursusApa(context, 'Verb 2')]),
               Column(children: [kursusApa(context, 'Verb 3')]),
+              SizedBox(height: 15),
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text('Back'),
+              ),
             ],
           ),
         ),
@@ -206,7 +214,7 @@ Widget kursusApa(BuildContext context, String judul) {
           Navigator.push(context, MaterialPageRoute(builder: (_) => HalamanDetailVerb(judulMateri: judul)));
         } else {
           // Menuju ke detail khusus Conversation
-          Navigator.push(context, MaterialPageRoute(builder: (_) => HalamanDetailConversation(judulMateri: judul)));
+          // Navigator.push(context, MaterialPageRoute(builder: (_) => HalamanDetailConversation(judulMateri: judul)));
         }
       },
     ),
@@ -235,27 +243,27 @@ class HalamanDetailVerb extends StatelessWidget {
   }
 }
 
-class HalamanDetailConversation extends StatelessWidget {
-  final String judulMateri;
-  final ValueNotifier<int> _stepNotifier = ValueNotifier<int>(1);
+// class HalamanDetailConversation extends StatelessWidget {
+//   final String judulMateri;
+//   final ValueNotifier<int> _stepNotifier = ValueNotifier<int>(1);
 
-  HalamanDetailConversation({super.key, required this.judulMateri});
+//   HalamanDetailConversation({super.key, required this.judulMateri});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(judulMateri)),
-      body: ValueListenableBuilder<int>(
-        valueListenable: _stepNotifier,
-        builder: (context, step, _) {
-          if (step == 1) return Percakapan1(onNext: () => _stepNotifier.value++);
-          if (step == 2) return Percakapan2(onNext: () => _stepNotifier.value++);
-          return Percakapan3(onNext: () => Navigator.pop(context));
-        },
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(title: Text(judulMateri)),
+//       body: ValueListenableBuilder<int>(
+//         valueListenable: _stepNotifier,
+//         builder: (context, step, _) {
+//           if (step == 1) return Percakapan1(onNext: () => _stepNotifier.value++);
+//           if (step == 2) return Percakapan2(onNext: () => _stepNotifier.value++);
+//           return Percakapan3(onNext: () => Navigator.pop(context));
+//         },
+//       ),
+//     );
+//   }
+// }
 
 class Kerja1 extends StatelessWidget {
   final VoidCallback onNext;
@@ -722,9 +730,16 @@ class Conversation extends StatelessWidget {
               const SizedBox(height: 10),
 
               // Menu Latihan Conversation
-              kursusApa(context, 'Daily Routine (Verb 1)'),
-              kursusApa(context, 'Past Experience (Verb 2)'),
-              kursusApa(context, 'Finished Tasks (Verb 3)'),
+              Listu(nama: 'Daily Routine (verb 1)', tujuan: Percakapan1()),
+              Listu(nama: 'Past Experience (verb 2)', tujuan: Percakapan2()),
+              Listu(nama: 'fininshed Task (verb 3)', tujuan: Percakapan3()),
+              SizedBox(height: 15),
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text('Back'),
+              ),
             ],
           ),
         ),
@@ -734,77 +749,98 @@ class Conversation extends StatelessWidget {
 }
 
 class Percakapan1 extends StatelessWidget {
-  final VoidCallback onNext;
-  const Percakapan1({super.key, required this.onNext});
+  const Percakapan1({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        // isi materi
-        const SizedBox(height: 20),
-        SizedBox(
-          width: double.infinity,
-          height: 50,
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.green, foregroundColor: Colors.white),
-            onPressed: () {},
-            child: const Text("Tandai sebagai Selesai ✓"),
+    return Scaffold(
+      appBar: AppBar(title: Text('Lern Daily Routine (verb 1)')),
+      body: Column(
+        children: [
+          // isi materi
+          const SizedBox(height: 20),
+          SizedBox(
+            width: double.infinity,
+            height: 50,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.green, foregroundColor: Colors.white),
+              onPressed: () {},
+              child: const Text("Tandai sebagai Selesai ✓"),
+            ),
           ),
-        ),
-        const SizedBox(height: 10),
-        SizedBox(
-          width: double.infinity,
-          height: 50,
-          child: OutlinedButton(onPressed: onNext, child: const Text("Pelajaran Selanjutnya → ")),
-        ),
-      ],
+          const SizedBox(height: 10),
+          SizedBox(
+            width: double.infinity,
+            height: 50,
+            child: OutlinedButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Percakapan2()));
+              },
+              child: const Text("Pelajaran Selanjutnya → "),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
 
 class Percakapan2 extends StatelessWidget {
-  final VoidCallback onNext;
-  const Percakapan2({super.key, required this.onNext});
+  const Percakapan2({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        // isi materi
-        const SizedBox(height: 20),
-        SizedBox(
-          width: double.infinity,
-          height: 50,
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.green, foregroundColor: Colors.white),
-            onPressed: () {},
-            child: const Text("Tandai sebagai Selesai ✓"),
+    return Scaffold(
+      appBar: AppBar(title: Text('Lern Past Experience (verb 2)')),
+      body: Column(
+        children: [
+          // isi materi
+          const SizedBox(height: 20),
+          SizedBox(
+            width: double.infinity,
+            height: 50,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.green, foregroundColor: Colors.white),
+              onPressed: () {},
+              child: const Text("Tandai sebagai Selesai ✓"),
+            ),
           ),
-        ),
-        const SizedBox(height: 10),
-        SizedBox(
-          width: double.infinity,
-          height: 50,
-          child: OutlinedButton(onPressed: onNext, child: const Text("Pelajaran Selanjutnya → ")),
-        ),
-      ],
+          const SizedBox(height: 10),
+          SizedBox(
+            width: double.infinity,
+            height: 50,
+            child: OutlinedButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Percakapan3()));
+              },
+              child: const Text("Pelajaran Selanjutnya → "),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
 
 class Percakapan3 extends StatelessWidget {
-  final VoidCallback onNext;
-  const Percakapan3({super.key, required this.onNext});
+  const Percakapan3({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        // isi materi
-        const SizedBox(height: 20),
-        ElevatedButton(onPressed: onNext, child: const Text("Selesai & Keluar ✓")),
-      ],
+    return Scaffold(
+      appBar: AppBar(title: Text('fininshed Task (verb 3)')),
+      body: Column(
+        children: [
+          // isi materi
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Conversation()));
+            },
+            child: const Text("Selesai & Keluar ✓"),
+          ),
+        ],
+      ),
     );
   }
 }
