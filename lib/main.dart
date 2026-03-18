@@ -1,3 +1,5 @@
+// import 'dart:nativewrappers/_internal/vm/lib/math_patch.dart';
+
 import 'package:flutter/material.dart';
 import 'package:mini_project/liastu.dart';
 
@@ -755,31 +757,107 @@ class Percakapan1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Lern Daily Routine (verb 1)')),
-      body: Column(
-        children: [
-          // isi materi
-          const SizedBox(height: 20),
-          SizedBox(
-            width: double.infinity,
-            height: 50,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.green, foregroundColor: Colors.white),
-              onPressed: () {},
-              child: const Text("Tandai sebagai Selesai ✓"),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Card(
+              elevation: 2,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(15)),
+              child: Padding(
+                padding: const EdgeInsetsGeometry.all(15),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      '1. Kapan Digunakan (When to Use)',
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    ),
+                    const SizedBox(height: 10),
+                    const Text(
+                      'Verb 1 Digunakan untuk.\n\n'
+                      '• Kebiasaan (Habit): Digunakan untuk membahas kegiatan yang dilakukan secara rutin atau berulang-ulang.\n  Contoh: I wake up at 5 AM.\n\n'
+                      '• Fakta Umum: Digunakan untuk menyatakan kebenaran umum atau hal yang tetap benar saat ini.\n  Contoh: The sun rises in the east.\n\n'
+                      '• Percakapan Langsung: Bentuk ini muncul saat membicarakan jadwal atau rutinitas harian kepada orang lain.\n  Contoh:\n  Toni: "What time does the movie start?" (Jam berapa filmnya mulai?)\n  Rani: "The movie starts at 7 PM tonight." (Filmnya mulai jam 7 malam ini)',
+                    ),
+                    const Divider(height: 40),
+                    const Text(
+                      '2. Aturan Penting Kata Do/Does',
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
+                    const SizedBox(height: 10),
+                    const Text(
+                      'Aturan utama dalam kalimat masa kini adalah penggunaan kata bantu Do atau Does.\n\n'
+                      '• Verb 1 Murni: Digunakan di kalimat positif untuk subjek I, You, We, They.\n'
+                      '• Kalimat Negatif: Ada "Do/Does not", maka kata kerja kembali ke Verb 1 dasar.\n'
+                      '• Kalimat Tanya: Jika ada "Do/Does", kata kerja tetap menggunakan Verb 1 dasar.\n'
+                      '• Penekanan: Jika sudah ada Do/Does, tidak boleh ada akhiran -s/-es pada kata kerja.',
+                    ),
+                    const Divider(height: 40),
+                    const Text(
+                      '3. Merespon Pernyataan (Statement)',
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
+                    const SizedBox(height: 10),
+                    const Text(
+                      'Dalam percakapan santai, jika lawan bicara memberikan pernyataan tentang kebiasaannya, tidak perlu menjawab Yes/No.\n'
+                      'Cukup balas dengan informasi tambahan menggunakan Verb 1 untuk menceritakan rutinitas diri sendiri.\n\n'
+                      'Contoh:\n'
+                      'Toni: I usually drink coffee in the morning.\n'
+                      'Rani: I prefer tea for my breakfast.',
+                    ),
+                    const Divider(height: 40),
+                    const Text(
+                      '4. Menjawab Pertanyaan (Do/Does)',
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
+                    const SizedBox(height: 10),
+                    const Text(
+                      'Jika lawan bicara bertanya menggunakan "Do" atau "Does", gunakan pola konfirmasi:\n\n'
+                      '• Jawaban (+): Yes + informasi lengkap dengan Verb 1.\n\n  Contoh: "Yes, I eat bread every day."\n\n'
+                      '• Jawaban (-): No + pola Do/Does not + Verb 1 dasar.\n\n 	Contoh: "No, I do not like spicy food."\n\n'
+                      '• Konfirmasi Cepat: Gunakan "Yes, I do" atau "No, I don\'t" untuk jawaban singkat.',
+                    ),
+                    const Divider(height: 40),
+                    const Text(
+                      '5. Contoh Percakapan (Examples)',
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
+                    const SizedBox(height: 10),
+                    const Text(
+                      '• Penggunaan Do (I/You/We/They):\n\n   Toni: "Do you work here?"\n   Jawaban (+): "Yes, I work here every day."\n   Jawaban (-): "No, I do not work here."\n\n'
+                      '• Penggunaan Does (He/She/It):\n\n   Toni: "Does she like spicy food?"\n   Jawaban (+): "No, she does not like spicy food."\n   Jawaban (-): "Yes, she likes spicy food.")\n\n'
+                      '• Merespon Pernyataan (Tanpa Yes/No):\n   Toni: "I usually drink coffee in the morning."\n   Rani: "I prefer tea for my breakfast."',
+                    ),
+                  ],
+                ),
+              ),
             ),
-          ),
-          const SizedBox(height: 10),
-          SizedBox(
-            width: double.infinity,
-            height: 50,
-            child: OutlinedButton(
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Percakapan2()));
-              },
-              child: const Text("Pelajaran Selanjutnya → "),
+            // isi materi
+            const SizedBox(height: 20),
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.green, foregroundColor: Colors.white),
+                onPressed: () {},
+                child: const Text("Tandai sebagai Selesai ✓"),
+              ),
             ),
-          ),
-        ],
+            const SizedBox(height: 10),
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: OutlinedButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Percakapan2()));
+                },
+                child: const Text("Pelajaran Selanjutnya → "),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
