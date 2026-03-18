@@ -587,9 +587,9 @@ class Kerja3 extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Apa itu Verb 3?", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-                  SizedBox(height: 10),
-                  Text(
+                  const Text("Apa itu Verb 3?", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                  const SizedBox(height: 10),
+                  const Text(
                     "Verb 3 adalah bentuk kata kerja ketiga dalam bahasa Inggris.\n"
                     " Berbeda dengan Verb 2 yang berdiri sendiri untuk menceritakan masa lalu,\n"
                     " Verb 3 biasanya membutuhkan kata bantu (auxiliary verb) seperti have, has, atau had agar kalimatnya sempurna.",
@@ -611,6 +611,7 @@ class Kerja3 extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
 
+                  // Tabel Irregular Verbs
                   Table(
                     border: TableBorder.all(color: Colors.grey.shade300),
                     columnWidths: const {0: FixedColumnWidth(80), 1: FlexColumnWidth()},
@@ -790,32 +791,117 @@ class Percakapan2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Lern Past Experience (verb 2)')),
-      body: Column(
-        children: [
-          // isi materi
-          const SizedBox(height: 20),
-          SizedBox(
-            width: double.infinity,
-            height: 50,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.green, foregroundColor: Colors.white),
-              onPressed: () {},
-              child: const Text("Tandai sebagai Selesai ✓"),
+      appBar: AppBar(title: const Text('Past Task (Verb 2)')),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Card(
+              elevation: 2,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+              child: Padding(
+                padding: const EdgeInsets.all(15),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      '1. Kapan Digunakan (When to Use)',
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    ),
+                    const SizedBox(height: 10),
+                    const Text(
+                      'Verb 2 digunakan untuk menyatakan tindakan yang sudah selesai di masa lalu.\n\n'
+                      '• Kejadian Spesifik: Waktunya jelas (yesterday, last week).\n'
+                      '• Kebiasaan Masa Lalu: Dulu dilakukan, sekarang tidak lagi.\n'
+                      '• Cerita/Narasi: Muncul saat menceritakan urutan kejadian atau memberikan jawaban positif (Yes).',
+                    ),
+                    const Divider(height: 40),
+
+                    // --- BAGIAN 2 ---
+                    const Text(
+                      '2. Aturan Penting Kata Did',
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
+                    const SizedBox(height: 10),
+                    const Text(
+                      'Aturan utama dalam kalimat masa lalu adalah penggunaan kata bantu Did.\n\n'
+                      '• Kalimat Positif: Langsung menggunakan Verb 2.\n'
+                      '• Kalimat Negatif: Ada "Did not/Didn\'t", maka Verb 2 kembali ke Verb 1.\n'
+                      '• Kalimat Tanya: Dimulai dengan "Did", maka Verb 2 kembali ke Verb 1.\n'
+                      '• Penekanan: Jika sudah ada kata DID, tidak boleh pakai Verb 2 lagi.',
+                    ),
+                    const Divider(height: 40),
+
+                    const Text(
+                      '3. Merespon Pernyataan (Statement)',
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
+                    const SizedBox(height: 10),
+                    const Text(
+                      'Dalam percakapan, tidak semua kalimat butuh jawaban konfirmasi (Yes/No).\n'
+                      'Jika lawan bicara bercerita, cukup balas dengan informasi tambahan menggunakan Verb 2 untuk menceritakan kegiatan Anda sendiri.\n\n'
+                      'Contoh:\n'
+                      'Toni: I saw you yesterday at the park.\n'
+                      'Rani: Oh really? I walked there with my sister.',
+                    ),
+                    const Divider(height: 40),
+
+                    const Text(
+                      '4. Menjawab Pertanyaan (Did)',
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
+                    const SizedBox(height: 10),
+                    const Text(
+                      'Jika lawan bicara bertanya menggunakan "Did", gunakan pola konfirmasi:\n\n'
+                      '• Jawaban (+): Yes + informasi lengkap pakai Verb 2.\n'
+                      '• Jawaban (-): No + pola Did not + kembali ke Verb 1.\n'
+                      '• Konfirmasi Cepat: Gunakan "Yes, I did" atau "No, I didn\'t".',
+                    ),
+                    const Divider(height: 40),
+
+                    const Text(
+                      '5. Contoh Percakapan (Examples)',
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
+                    const SizedBox(height: 10),
+                    const Text(
+                      'Tanpa Yes/No (Merespon Cerita):\n'
+                      'Toni: I went to the beach.\n'
+                      'Rani: Oh, I stayed at home.\n\n'
+                      'Dengan Yes/No (Menjawab Pertanyaan):\n'
+                      'Toni: Did you buy some snacks?\n'
+                      'Rani: Yes, we bought some bread.\n'
+                      'Toni: Did you buy chocolate?\n'
+                      'Rani: No, I did not buy it.',
+                    ),
+                  ],
+                ),
+              ),
             ),
-          ),
-          const SizedBox(height: 10),
-          SizedBox(
-            width: double.infinity,
-            height: 50,
-            child: OutlinedButton(
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Percakapan3()));
-              },
-              child: const Text("Pelajaran Selanjutnya → "),
+            const SizedBox(height: 20),
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.green, foregroundColor: Colors.white),
+                onPressed: () {},
+                child: const Text("Tandai sebagai Selesai ✓"),
+              ),
             ),
-          ),
-        ],
+            const SizedBox(height: 10),
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: OutlinedButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Percakapan3()));
+                },
+                child: const Text("Pelajaran Selanjutnya → "),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -823,7 +909,6 @@ class Percakapan2 extends StatelessWidget {
 
 class Percakapan3 extends StatelessWidget {
   const Percakapan3({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -848,13 +933,13 @@ class Percakapan3 extends StatelessWidget {
                     SizedBox(height: 10),
                     Text(
                       'Verb 3 digunakan untuk menyatakan tindakan yang sudah selesai dilakukan atau kejadian yang memiliki hubungan dengan masa sekarang.\n\n'
-                      "•	Kejadian yang Baru Saja Selesai (Present Perfect): Digunakan untuk membahas sesuatu yang sudah terjadi dan hasilnya masih terasa atau penting saat ini.\n"
+                      "• Kejadian yang Baru Saja Selesai (Present Perfect): Digunakan untuk membahas sesuatu yang sudah terjadi dan hasilnya masih terasa atau penting saat ini.\n"
                       ""
-                      "o	Contoh: I have finished my homework\n\n"
-                      "•	Pengalaman Hidup: Menyatakan hal yang pernah atau belum pernah dilakukan seumur hidup tanpa menyebutkan waktu spesifik.\n"
-                      "o	Contoh: She has visited Bali three times.\n\n"
-                      "•	Kalimat Pasif (Passive Voice): Digunakan ketika subjek dikenai tindakan, bukan melakukan tindakan.\n"
-                      "o	Contoh: The cake was eaten by my brother.",
+                      "o Contoh: I have finished my homework\n\n"
+                      "• Pengalaman Hidup: Menyatakan hal yang pernah atau belum pernah dilakukan seumur hidup tanpa menyebutkan waktu spesifik.\n"
+                      "o Contoh: She has visited Bali three times.\n\n"
+                      "• Kalimat Pasif (Passive Voice): Digunakan ketika subjek dikenai tindakan, bukan melakukan tindakan.\n"
+                      "o Contoh: The cake was eaten by my brother.",
                     ),
                     Divider(height: 40),
                     Text(
@@ -864,19 +949,19 @@ class Percakapan3 extends StatelessWidget {
                     SizedBox(height: 10),
                     Text(
                       'Aturan utama dalam menggunakan Verb 3 pada kalimat masa kini (Present Perfect) adalah penggunaan kata bantu Have atau Has.\n\n'
-                      '•	Have (untuk I, You, We, They): Digunakan dalam kalimat positif, negatif, dan tanya.\n'
-                      '•	Has (untuk He, She, It): Digunakan untuk subjek tunggal orang ketiga.\n'
-                      '•	Bentuk Tetap: Berbeda dengan Verb 1, dalam kalimat tanya atau negatif, kata kerja tetap menggunakan Verb 3 (tidak kembali ke bentuk dasar).\n'
-                      '•	Penekanan Utama: Verb 3 selalu berpasangan dengan Have/Has/Had atau To Be (am/is/are/was/were). Tidak bisa berdiri sendiri sebagai kata kerja utama tanpa pendamping.',
+                      '• Have (untuk I, You, We, They): Digunakan dalam kalimat positif, negatif, dan tanya.\n'
+                      '• Has (untuk He, She, It): Digunakan untuk subjek tunggal orang ketiga.\n'
+                      '• Bentuk Tetap: Berbeda dengan Verb 1, dalam kalimat tanya atau negatif, kata kerja tetap menggunakan Verb 3 (tidak kembali ke bentuk dasar).\n'
+                      '• Penekanan Utama: Verb 3 selalu berpasangan dengan Have/Has/Had atau To Be (am/is/are/was/were). Tidak bisa berdiri sendiri sebagai kata kerja utama tanpa pendamping.',
                     ),
                     Divider(height: 40),
                     Text('3. Contoh Penggunaan', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
                     SizedBox(height: 10),
                     Text(
-                      '•	Have (untuk I/You/We/They):\n'
-                      'o	"They have gone to London." (Bukan: They have go)\n\n'
-                      '•	Has (untuk He/She/It):\n'
-                      'o	"Has he taken his medicine?" (Bukan: Has he take?)',
+                      '• Have (untuk I/You/We/They):\n'
+                      'o "They have gone to London." (Bukan: They have go)\n\n'
+                      '• Has (untuk He/She/It):\n'
+                      'o "Has he taken his medicine?" (Bukan: Has he take?)',
                     ),
                     Divider(height: 40),
                     Text(
@@ -888,8 +973,8 @@ class Percakapan3 extends StatelessWidget {
                       'Dalam percakapan santai tentang pengalaman atau hal yang sudah dilakukan:\n'
                       'Jika lawan bicara memberikan pernyataan tentang apa yang sudah mereka lakukan, Anda bisa merespon dengan memberikan informasi tambahan menggunakan Have/Has + Verb 3 untuk membandingkan pengalaman Anda.\n\n'
                       'Contoh\n'
-                      'o	Toni: I have watched that movie twice.\n'
-                      'o	Rani: Really? I havent seen it yet.',
+                      'o Toni: I have watched that movie twice.\n'
+                      'o Rani: Really? I havent seen it yet.',
                     ),
                     Divider(height: 39),
                     Text(
@@ -899,11 +984,11 @@ class Percakapan3 extends StatelessWidget {
                     const SizedBox(height: 10),
                     Text(
                       'Jika lawan bicara bertanya menggunakan kata Have atau Has, gunakan pola konfirmasi berikut:\n\n'
-                      '•	Jawaban Positif: Gunakan Yes diikuti informasi lengkap dengan Have/Has + Verb 3.\n'
-                      'o	Contoh: "Yes, I have cleaned the room.\n\n'
-                      '•	Jawaban Negatif: Gunakan No diikuti pola Have not (Havent) / Has not (Hasnt) dan tetap gunakan Verb 3.\n'
-                      'o	Contoh: No, she hasnt called me.\n\n'
-                      '•	Konfirmasi Cepat: Gunakan "Yes, I have" atau "No, I havent untuk jawaban singkat.',
+                      '• Jawaban Positif: Gunakan Yes diikuti informasi lengkap dengan Have/Has + Verb 3.\n'
+                      'o Contoh: "Yes, I have cleaned the room.\n\n'
+                      '• Jawaban Negatif: Gunakan No diikuti pola Have not (Havent) / Has not (Hasnt) dan tetap gunakan Verb 3.\n'
+                      'o Contoh: No, she hasnt called me.\n\n'
+                      '• Konfirmasi Cepat: Gunakan "Yes, I have" atau "No, I havent untuk jawaban singkat.',
                     ),
                   ],
                 ),
