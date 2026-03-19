@@ -1,9 +1,6 @@
-// import 'dart:nativewrappers/_internal/vm/lib/math_patch.dart';
-
 import 'package:flutter/material.dart';
 import 'package:mini_project/liastu.dart';
 
-// 1. Variabel Global untuk menyimpan indeks yang aktif
 final ValueNotifier<int> _indexNotifier = ValueNotifier<int>(0);
 
 void main() => runApp(const MyApp());
@@ -15,14 +12,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      title: 'Learning English Cours',
       home: Scaffold(
-        // 2. ValueListenableBuilder memantau perubahan indeks
         body: ValueListenableBuilder<int>(
           valueListenable: _indexNotifier,
           builder: (context, index, child) {
-            // Daftar halaman
             final List<Widget> pages = [
               const Home(),
+              const Cours(),
+              const Profil(),
               const Center(child: Text("Halaman Courses")),
               const Center(child: Text("Halaman Profile")),
             ];
@@ -30,7 +28,6 @@ class MyApp extends StatelessWidget {
           },
         ),
 
-        // 3. BottomNavigationBar di posisi paling bawah
         bottomNavigationBar: ValueListenableBuilder<int>(
           valueListenable: _indexNotifier,
           builder: (context, index, child) {
@@ -51,7 +48,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// Halaman Home kamu (tetap Stateless)
 class Home extends StatelessWidget {
   const Home({super.key});
 
@@ -65,33 +61,31 @@ class Home extends StatelessWidget {
         centerTitle: true,
         actions: const [Icon(Icons.notification_add)],
       ),
-      // Ubah bagian body di dalam kelas Home menjadi seperti ini:
+
       body: SingleChildScrollView(
-        // 1. Tambahkan ini agar bisa scroll ke bawah
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: EdgeInsets.all(20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // 2. Bungkus kolom teks dengan Expanded
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
+                        Text(
                           'Welcome to the basic English class,',
                           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                         ),
-                        const SizedBox(height: 10),
-                        const Text('Hai!! Andrian 🙌', style: TextStyle(color: Colors.grey, fontSize: 17)),
+                        SizedBox(height: 10),
+                        Text('Hai!! Andrian 🙌', style: TextStyle(color: Colors.grey, fontSize: 17)),
                       ],
                     ),
                   ),
-                  const SizedBox(width: 10), // Jarak antara teks dan ikon
-                  const Row(
+                  SizedBox(width: 10),
+                  Row(
                     children: [
                       Icon(Icons.local_fire_department_sharp, color: Colors.orangeAccent),
                       SizedBox(width: 10),
@@ -100,9 +94,9 @@ class Home extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 30),
+              SizedBox(height: 30),
               Container(
-                padding: const EdgeInsets.all(20),
+                padding: EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20),
@@ -111,21 +105,18 @@ class Home extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [Text('Progress'), Text('0%')],
-                    ),
+                    Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [Text('Progress'), Text('100%')]),
                     const SizedBox(height: 15),
                     ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: const LinearProgressIndicator(
-                        value: 0.0,
+                        value: 100,
                         valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
                         minHeight: 10,
                       ),
                     ),
                     const SizedBox(height: 15),
-                    const Text('0 of 15 lessons completed', style: TextStyle(color: Colors.grey)),
+                    const Text('0 of 6 lessons completed', style: TextStyle(color: Colors.grey)),
                   ],
                 ),
               ),
@@ -1083,6 +1074,124 @@ class Percakapan3 extends StatelessWidget {
                 child: const Text('Selesai ✓ & keluar'),
               ),
             ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class Cours extends StatelessWidget {
+  const Cours({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+class Profil extends StatelessWidget {
+  const Profil({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: const Text('Your Profile', style: TextStyle(fontWeight: FontWeight.bold)),
+        centerTitle: true,
+        actions: const [Padding(padding: EdgeInsets.only(right: 15), child: Icon(Icons.notification_add))],
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 10)],
+                border: Border.all(color: Colors.grey),
+              ),
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    radius: 50,
+                    backgroundColor: Colors.yellow,
+                    child: CircleAvatar(
+                      radius: 46,
+                      backgroundColor: Colors.white,
+                      backgroundImage: NetworkImage(
+                        'https://instagram.fbdo9-1.fna.fbcdn.net/v/t51.82787-19/539287142_18325279573234466_5395290407969283045_n.jpg?efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=instagram.fbdo9-1.fna.fbcdn.net&_nc_cat=102&_nc_oc=Q6cZ2gFFmKGEHtYYJkucYzbWxN0FoduI1h9rVxEyQ9ZZXdz-7HR6mHrz9Y9600l9M4SsUH9aElws5X2HGk1D847G5-BO&_nc_ohc=iqrmUK6hhFEQ7kNvwFBtYxZ&_nc_gid=N654RoLnf8dMlgVqZUJNcA&edm=ALGbJPMBAAAA&ccb=7-5&oh=00_AfzS4VCxdp86tC5s6z3uWTM-eZOZ2mh5NRW9fnSI4MimZA&oe=69C14C49&_nc_sid=7d3ac5',
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 20),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Izzahtul Mahdiyah', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                        Text('Age : 19', style: TextStyle(color: Colors.grey)),
+                        Text('Andalas University', style: TextStyle(color: Colors.grey)),
+                        Text(
+                          'Learning English Course',
+                          style: TextStyle(color: Colors.green, fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            SizedBox(height: 30),
+            Text("Overall Progress", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            SizedBox(height: 15),
+            Container(
+              padding: EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: Colors.grey[200]!),
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('My Learning Path', style: TextStyle(fontWeight: FontWeight.w500)),
+                      Text('100%'),
+                    ],
+                  ),
+                  SizedBox(height: 12),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: const LinearProgressIndicator(
+                      value: 100,
+                      backgroundColor: Color(0xFFE0E0E0),
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+                      minHeight: 8,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 30),
+
+            const Text("My Courses", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 15),
+            Progress(
+              title: 'Conversetion',
+              progress: 10,
+              color: Colors.blue,
+              tujuan: Conversation(),
+              icon: Icons.record_voice_over,
+            ),
+            Progress(title: 'Vocabulry', progress: 10, color: Colors.orange, tujuan: Verb(), icon: Icons.book),
           ],
         ),
       ),
