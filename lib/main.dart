@@ -13,17 +13,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Learning English Cours',
+
+      theme: ThemeData(primarySwatch: Colors.blue),
       home: Scaffold(
         body: ValueListenableBuilder<int>(
           valueListenable: _indexNotifier,
           builder: (context, index, child) {
-            final List<Widget> pages = [
-              const Home(),
-              // const Cours(),
-              const Profil(),
-              // const Center(child: Text("Halaman Courses")),
-              const Center(child: Text("Halaman Profile")),
-            ];
+            final List<Widget> pages = [const Home(), const Profil(), const Center(child: Text("Halaman Profile"))];
             return pages[index];
           },
         ),
@@ -33,12 +29,17 @@ class MyApp extends StatelessWidget {
           builder: (context, index, child) {
             return BottomNavigationBar(
               currentIndex: index,
-              selectedItemColor: Colors.green,
+
+              backgroundColor: Colors.white,
+              selectedItemColor: Colors.blueAccent,
+              unselectedItemColor: Colors.blue[100],
+              selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
+              type: BottomNavigationBarType.fixed, // Agar posisi tetap tenang/stabil
+              // --------------------------------
               onTap: (val) => _indexNotifier.value = val,
               items: const [
-                BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-                // BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Courses'),
-                BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+                BottomNavigationBarItem(icon: Icon(Icons.home_rounded), label: 'Home'),
+                BottomNavigationBarItem(icon: Icon(Icons.person_rounded), label: 'Profile'),
               ],
             );
           },
@@ -54,74 +55,110 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      // Ganti ke warna background biru sangat muda agar kesan 'cute' terasa
+      backgroundColor: const Color(0xFFF3F8FF),
       appBar: AppBar(
-        leading: const Icon(Icons.dashboard),
-        title: const Text(' Learning App', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
+        backgroundColor: Colors.white,
+        elevation: 0, // Biar AppBar terlihat bersih menyatu
+        leading: const Icon(Icons.dashboard_rounded, color: Colors.blueAccent),
+        title: const Text(
+          ' Learning App',
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Color(0xFF3F51B5)),
+        ),
         centerTitle: true,
-        actions: const [Icon(Icons.notification_add)],
+        actions: const [
+          Padding(
+            padding: EdgeInsets.only(right: 12),
+            child: Icon(Icons.notification_add, color: Colors.blueAccent),
+          ),
+        ],
       ),
 
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(
+                  const Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Welcome to the basic English class,',
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                          'Welcome to the basic English class',
+                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Color(0xFF2D3142)),
                         ),
-                        SizedBox(height: 10),
-                        Text('Hai!! Andrian 🙌', style: TextStyle(color: Colors.grey, fontSize: 17)),
                       ],
                     ),
                   ),
-                  SizedBox(width: 10),
-                  Row(
-                    children: [
-                      Icon(Icons.local_fire_department_sharp, color: Colors.orangeAccent),
-                      SizedBox(width: 10),
-                      Icon(Icons.emoji_events_outlined, color: Color.fromARGB(255, 20, 217, 36)),
-                    ],
+                  const SizedBox(width: 10),
+                  // Memberi background putih pada icon point agar rapi
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                      boxShadow: [BoxShadow(color: Colors.black.withAlpha(10), blurRadius: 5)],
+                    ),
+                    child: const Row(
+                      children: [
+                        Icon(Icons.local_fire_department_sharp, color: Colors.orangeAccent),
+                        SizedBox(width: 5),
+                        Icon(Icons.emoji_events_outlined, color: Color.fromARGB(255, 20, 217, 36)),
+                      ],
+                    ),
                   ),
                 ],
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               Container(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: Colors.grey[200]!),
+                  borderRadius: BorderRadius.circular(25), // Sudut lebih bulat (cute)
+                  border: Border.all(color: Colors.blue.shade100, width: 2), // Border biru muda
+                  boxShadow: [
+                    BoxShadow(color: Colors.blueAccent.withAlpha(20), blurRadius: 20, offset: const Offset(0, 10)),
+                  ],
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [Text('Progress'), Text('100%')]),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Progress',
+                          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blueAccent),
+                        ),
+                        Text(
+                          '100%',
+                          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green),
+                        ),
+                      ],
+                    ),
                     const SizedBox(height: 15),
                     ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: const LinearProgressIndicator(
                         value: 100,
-                        valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
-                        minHeight: 10,
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.green), // Garis panjang jadi hijau
+                        backgroundColor: Color(0xFFE8F5E9), // Warna dasar garis jadi hijau sangat muda (cute)
+                        minHeight: 12,
                       ),
                     ),
-                    const SizedBox(height: 15),
-                    const Text('0 of 6 lessons completed', style: TextStyle(color: Colors.grey)),
                   ],
                 ),
               ),
-              SizedBox(height: 20),
-              Text("Hi, What would you learn today?", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              const SizedBox(height: 30),
+              const Text(
+                "Hi, What would you learn today?",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF2D3142)),
+              ),
+              const SizedBox(height: 15),
 
               Column(children: [kursusApa(context, "Vocabulary"), kursusApa(context, "Conversation")]),
             ],
@@ -130,6 +167,45 @@ class Home extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget kursusApa(BuildContext context, String judul) {
+  return Card(
+    margin: const EdgeInsets.only(bottom: 15),
+    elevation: 0,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(20),
+      side: BorderSide(color: Colors.blue.shade50),
+    ),
+    child: Container(
+      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20)),
+      child: ListTile(
+        contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+        leading: Container(
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(color: const Color(0xFFE3F2FD), borderRadius: BorderRadius.circular(15)),
+          child: Icon(
+            judul == "Vocabulary" ? Icons.auto_stories_rounded : Icons.forum_rounded,
+
+            color: const Color(0xFF1976D2),
+          ),
+        ),
+        title: Text(
+          judul,
+          style: const TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF2D3142)),
+        ),
+
+        trailing: const Icon(Icons.arrow_forward_ios_rounded, size: 14, color: Colors.blue),
+        onTap: () {
+          if (judul == "Vocabulary") {
+            Navigator.push(context, MaterialPageRoute(builder: (_) => const Verb()));
+          } else if (judul == "Conversation") {
+            Navigator.push(context, MaterialPageRoute(builder: (_) => const Conversation()));
+          }
+        },
+      ),
+    ),
+  );
 }
 
 class Verb extends StatelessWidget {
@@ -186,25 +262,6 @@ class Verb extends StatelessWidget {
       ),
     );
   }
-}
-
-Widget kursusApa(BuildContext context, String judul) {
-  return Card(
-    margin: const EdgeInsets.only(bottom: 15),
-    child: ListTile(
-      leading: Icon(judul.contains("Verb") ? Icons.book : Icons.message, color: Colors.blueAccent),
-      title: Text(judul, style: const TextStyle(fontWeight: FontWeight.bold)),
-      trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-      onTap: () {
-        // Logika Navigasi yang benar
-        if (judul == "Vocabulary") {
-          Navigator.push(context, MaterialPageRoute(builder: (_) => const Verb()));
-        } else if (judul == "Conversation") {
-          Navigator.push(context, MaterialPageRoute(builder: (_) => const Conversation()));
-        }
-      },
-    ),
-  );
 }
 
 class Kerja1 extends StatelessWidget {
