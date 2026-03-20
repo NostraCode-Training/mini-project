@@ -55,11 +55,10 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Ganti ke warna background biru sangat muda agar kesan 'cute' terasa
       backgroundColor: const Color(0xFFF3F8FF),
       appBar: AppBar(
         backgroundColor: Colors.white,
-        elevation: 0, // Biar AppBar terlihat bersih menyatu
+        elevation: 0,
         leading: const Icon(Icons.dashboard_rounded, color: Colors.blueAccent),
         title: const Text(
           ' Learning App',
@@ -95,7 +94,6 @@ class Home extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 10),
-                  // Memberi background putih pada icon point agar rapi
                   Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
@@ -118,8 +116,8 @@ class Home extends StatelessWidget {
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(25), // Sudut lebih bulat (cute)
-                  border: Border.all(color: Colors.blue.shade100, width: 2), // Border biru muda
+                  borderRadius: BorderRadius.circular(25),
+                  border: Border.all(color: Colors.blue.shade100, width: 2),
                   boxShadow: [
                     BoxShadow(color: Colors.blueAccent.withAlpha(20), blurRadius: 20, offset: const Offset(0, 10)),
                   ],
@@ -145,8 +143,8 @@ class Home extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                       child: const LinearProgressIndicator(
                         value: 100,
-                        valueColor: AlwaysStoppedAnimation<Color>(Colors.green), // Garis panjang jadi hijau
-                        backgroundColor: Color(0xFFE8F5E9), // Warna dasar garis jadi hijau sangat muda (cute)
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+                        backgroundColor: Color(0xFFE8F5E9),
                         minHeight: 12,
                       ),
                     ),
@@ -215,46 +213,65 @@ class Verb extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
+      backgroundColor: const Color(0xFFF0F8FF),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const SizedBox(height: 40),
+
               Container(
                 width: screenWidth,
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(25),
-                  border: Border.all(color: Colors.black, width: 1),
+                  borderRadius: BorderRadius.circular(30),
+                  border: Border.all(color: const Color(0xFFB2EBF2), width: 2),
                 ),
                 child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("What is Verb?", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                    Text(
+                      "What is Verb? ✨",
+                      style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Color(0xFF3949AB)),
+                    ),
                     SizedBox(height: 10),
                     Text(
                       "Verb atau kata kerja adalah bagian paling penting dalam kalimat yang menunjukkan tindakan, perbuatan, atau keadaan. Dalam bahasa Inggris, kata kerja memiliki peran utama sebagai inti dari apa yang dilakukan oleh subjek. ",
-                      style: TextStyle(fontSize: 16, color: Colors.grey),
+                      style: TextStyle(fontSize: 16, color: Color(0xFF546E7A)),
                     ),
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
-              const Text("Hi! Ready to practice?", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-              const SizedBox(height: 10),
 
-              // Menu Latihan Conversation
-              Listu(nama: 'Verb 1', tujuan: Kerja1()),
-              Listu(nama: 'Verb 2', tujuan: Kerja2()),
-              Listu(nama: 'Verb 3', tujuan: Kerja3()),
-              SizedBox(height: 15),
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text('Back'),
+              const SizedBox(height: 25),
+
+              const Text(
+                "Hi! Ready to practice? 🚀",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF1A237E)),
+              ),
+              const SizedBox(height: 15),
+
+              Listu(nama: 'Verb 1 (Present)', tujuan: const Kerja1()),
+              const SizedBox(height: 12),
+              Listu(nama: 'Verb 2 (Past)', tujuan: const Kerja2()),
+              const SizedBox(height: 12),
+              Listu(nama: 'Verb 3 (Perfect)', tujuan: const Kerja3()),
+
+              const SizedBox(height: 20),
+
+              Center(
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text(
+                    '← Back to Home',
+                    style: TextStyle(color: Color(0xFF448AFF), fontWeight: FontWeight.w600, fontSize: 16),
+                  ),
+                ),
               ),
             ],
           ),
@@ -731,47 +748,65 @@ class Conversation extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      backgroundColor: const Color(0xFFF0F8FF),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Kartu Penjelasan
+              const SizedBox(height: 40),
+
               Container(
                 width: screenWidth,
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(25),
-                  border: Border.all(color: Colors.black, width: 1),
+                  borderRadius: BorderRadius.circular(30),
+                  border: Border.all(color: const Color(0xFFB2EBF2), width: 2),
                 ),
                 child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("What is Conversation?", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                    Text(
+                      "What is Conversation? 💬",
+                      style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Color(0xFF3949AB)),
+                    ),
                     SizedBox(height: 10),
                     Text(
-                      "Conversation adalah kegiatan interaksi verbal (bicara) atau tulisan antara dua orang atau lebih untuk bertukar ide, informasi, atau perasaan. Di sini, kita akan menerapkan Verb 1, 2, dan 3 ke dalam dialog sehari-hari agar kamu lebih mahir.",
-                      style: TextStyle(fontSize: 16, color: Colors.grey),
+                      "Conversation adalah kegiatan interaksi verbal atau tulisan antara dua orang atau lebih untuk bertukar ide, informasi, atau perasaan. Di sini, kita akan menerapkan Verb 1, 2, dan 3 ke dalam dialog sehari-hari.",
+                      style: TextStyle(fontSize: 16, color: Color(0xFF546E7A)),
                     ),
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
-              const Text("Hi! Ready to practice?", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-              const SizedBox(height: 10),
 
-              // Menu Latihan Conversation
-              Listu(nama: 'Daily Routine (verb 1)', tujuan: Percakapan1()),
-              Listu(nama: 'Past Experience (verb 2)', tujuan: Percakapan2()),
-              Listu(nama: 'fininshed Task (verb 3)', tujuan: Percakapan3()),
-              SizedBox(height: 15),
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text('Back'),
+              const SizedBox(height: 25),
+
+              const Text(
+                "Hi! Ready to practice? 🚀",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF1A237E)),
+              ),
+              const SizedBox(height: 15),
+
+              Listu(nama: 'Daily Routine (Verb 1)', tujuan: const Percakapan1()),
+              const SizedBox(height: 12),
+              Listu(nama: 'Past Experience (Verb 2)', tujuan: const Percakapan2()),
+              const SizedBox(height: 12),
+              Listu(nama: 'Finished Task (Verb 3)', tujuan: const Percakapan3()),
+
+              const SizedBox(height: 20),
+
+              Center(
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text(
+                    '← Back to Home',
+                    style: TextStyle(color: Color(0xFF448AFF), fontWeight: FontWeight.w600, fontSize: 16),
+                  ),
+                ),
               ),
             ],
           ),
@@ -1117,49 +1152,58 @@ class Profil extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.blue[50],
       appBar: AppBar(
         title: const Text('Your Profile', style: TextStyle(fontWeight: FontWeight.bold)),
         centerTitle: true,
-        actions: const [Padding(padding: EdgeInsets.only(right: 15), child: Icon(Icons.notification_add))],
+        backgroundColor: Colors.white,
+        elevation: 0,
+        actions: const [
+          Padding(
+            padding: EdgeInsets.only(right: 15),
+            child: Icon(Icons.favorite, color: Colors.pinkAccent),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // KOTAK PROFIL
             Container(
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 10)],
-                border: Border.all(color: Colors.grey),
+                borderRadius: BorderRadius.circular(25),
+                border: Border.all(color: Colors.pink[50]!),
+                boxShadow: [BoxShadow(color: Colors.purple[50]!, blurRadius: 15)],
               ),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CircleAvatar(
-                    radius: 50,
-                    backgroundColor: Colors.yellow,
-                    child: CircleAvatar(
-                      radius: 46,
+                    radius: 45,
+                    backgroundColor: Colors.pink[100],
+                    child: const CircleAvatar(
+                      radius: 41,
                       backgroundColor: Colors.white,
                       backgroundImage: NetworkImage(
                         'https://instagram.fbdo9-1.fna.fbcdn.net/v/t51.82787-19/539287142_18325279573234466_5395290407969283045_n.jpg?efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=instagram.fbdo9-1.fna.fbcdn.net&_nc_cat=102&_nc_oc=Q6cZ2gFFmKGEHtYYJkucYzbWxN0FoduI1h9rVxEyQ9ZZXdz-7HR6mHrz9Y9600l9M4SsUH9aElws5X2HGk1D847G5-BO&_nc_ohc=iqrmUK6hhFEQ7kNvwFBtYxZ&_nc_gid=N654RoLnf8dMlgVqZUJNcA&edm=ALGbJPMBAAAA&ccb=7-5&oh=00_AfzS4VCxdp86tC5s6z3uWTM-eZOZ2mh5NRW9fnSI4MimZA&oe=69C14C49&_nc_sid=7d3ac5',
                       ),
                     ),
                   ),
-                  SizedBox(width: 20),
-                  Expanded(
+                  const SizedBox(width: 20),
+                  const Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text('Izzahtul Mahdiyah', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
                         Text('Age : 19', style: TextStyle(color: Colors.grey)),
-                        Text('Andalas University', style: TextStyle(color: Colors.grey)),
+                        Text('Andalas University', style: TextStyle(color: Colors.purple)),
                         Text(
-                          'Learning English Course',
-                          style: TextStyle(color: Colors.green, fontWeight: FontWeight.w500),
+                          'Learning English Course ✨',
+                          style: TextStyle(color: Colors.blueAccent, fontWeight: FontWeight.w500),
                         ),
                       ],
                     ),
@@ -1168,35 +1212,43 @@ class Profil extends StatelessWidget {
               ),
             ),
 
-            SizedBox(height: 30),
-            Text("Overall Progress", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-            SizedBox(height: 15),
+            const SizedBox(height: 30),
+            const Text("Overall Progress", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 15),
+
+            // KOTAK PROGRESS
             Container(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: Colors.grey[200]!),
+                border: Border.all(color: Colors.blue[50]!),
               ),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text('My Learning Path', style: TextStyle(fontWeight: FontWeight.w500)),
-                      Text('100%'),
+                      Text(
+                        '100%',
+                        style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+                      ),
                     ],
                   ),
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
                   ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: const LinearProgressIndicator(
-                      value: 100,
-                      backgroundColor: Color(0xFFE0E0E0),
-                      valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
-                      minHeight: 8,
+                    child: LinearProgressIndicator(
+                      value: 1.0,
+                      backgroundColor: Colors.blue[50],
+                      valueColor: const AlwaysStoppedAnimation<Color>(Colors.green),
+                      minHeight: 10,
                     ),
                   ),
+                  const SizedBox(height: 8),
+                  const Text('6 Of 6 lesson completed', style: TextStyle(color: Colors.grey, fontSize: 12)),
                 ],
               ),
             ),
@@ -1209,10 +1261,16 @@ class Profil extends StatelessWidget {
               title: 'Conversetion',
               progress: 10,
               color: Colors.blue,
-              tujuan: Conversation(),
+              tujuan: const Conversation(),
               icon: Icons.record_voice_over,
             ),
-            Progress(title: 'Vocabulry', progress: 10, color: Colors.orange, tujuan: Verb(), icon: Icons.book),
+            Progress(
+              title: 'Vocabulry',
+              progress: 10,
+              color: Colors.orange,
+              tujuan: const Verb(),
+              icon: Icons.auto_stories_rounded,
+            ),
           ],
         ),
       ),

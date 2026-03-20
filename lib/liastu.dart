@@ -77,7 +77,7 @@ class Progress extends StatelessWidget {
                 minHeight: 6,
               ),
             ),
-            Text('6 0f 6 lesson complated', style: TextStyle(color: Colors.grey)),
+            Text('3 of 3 lesson complated', style: TextStyle(color: Colors.grey)),
           ],
         ),
       ),
