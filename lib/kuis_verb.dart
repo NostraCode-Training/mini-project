@@ -12,11 +12,9 @@ class KuisVerb extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            // Soal 1
             buildSection("Bentuk Verb 2 dari kata kerja 'Eat' adalah 'Eaten'."),
             const SizedBox(height: 35),
 
-            // Soal 2
             buildSection("Kata kerja 'Go' memiliki bentuk Verb 2 'Went' dan Verb 3 'Gone'."),
             const SizedBox(height: 35),
 
@@ -31,6 +29,19 @@ class KuisVerb extends StatelessWidget {
             // Soal 5
             buildSection("Verb 2 dari 'Write' adalah 'Written'."),
             const SizedBox(height: 20),
+
+            const SizedBox(height: 35),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text('← Back to Home', style: TextStyle(color: Colors.blue)),
+                ),
+              ],
+            ),
           ],
         ),
       ),
@@ -43,7 +54,7 @@ class KuisVerb extends StatelessWidget {
       children: [
         // Kotak Teks Soal
         Container(
-          width: double.infinity,
+          width: 500,
           padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
           decoration: BoxDecoration(
             color: Colors.white,
@@ -58,7 +69,10 @@ class KuisVerb extends StatelessWidget {
         ),
         const SizedBox(height: 15),
         // Baris Tombol Benar & Salah
-        Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [buildButton("BENAR"), buildButton("SALAH")]),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [buildButton("BENAR"), const SizedBox(width: 15), buildButton("SALAH")],
+        ),
       ],
     );
   }
