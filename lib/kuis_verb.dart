@@ -6,8 +6,79 @@ class KuisVerb extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Title')),
-      body: Column(children: []),
+      backgroundColor: const Color(0xFFEBF5FB), // Biru pastel sangat muda
+      appBar: AppBar(title: const Text('kuis Verb'), backgroundColor: Colors.blueAccent, centerTitle: true),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            // Soal 1
+            buildSection("Bentuk Verb 2 dari kata kerja 'Eat' adalah 'Eaten'."),
+            const SizedBox(height: 35),
+
+            // Soal 2
+            buildSection("Kata kerja 'Go' memiliki bentuk Verb 2 'Went' dan Verb 3 'Gone'."),
+            const SizedBox(height: 35),
+
+            // Soal 3
+            buildSection("Bentuk Verb 3 dari 'Study' adalah 'Studying'."),
+            const SizedBox(height: 35),
+
+            // Soal 4
+            buildSection("Kata kerja 'Drink' berubah menjadi 'Drank' pada Verb 2 dan 'Drunk' pada Verb 3."),
+            const SizedBox(height: 35),
+
+            // Soal 5
+            buildSection("Verb 2 dari 'Write' adalah 'Written'."),
+            const SizedBox(height: 20),
+          ],
+        ),
+      ),
+    );
+  }
+
+  // Widget untuk membungkus Soal + Tombol
+  Widget buildSection(String teks) {
+    return Column(
+      children: [
+        // Kotak Teks Soal
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: Colors.blue.shade100, width: 2),
+          ),
+          child: Text(
+            teks,
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontSize: 16, color: Colors.blueGrey, height: 1.4),
+          ),
+        ),
+        const SizedBox(height: 15),
+        // Baris Tombol Benar & Salah
+        Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [buildButton("BENAR"), buildButton("SALAH")]),
+      ],
+    );
+  }
+
+  // Widget khusus untuk desain tombol biru yang cute
+  Widget buildButton(String label) {
+    return Container(
+      width: 120,
+      padding: const EdgeInsets.symmetric(vertical: 12),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: Colors.blue.shade200, width: 1.5),
+      ),
+      child: Center(
+        child: Text(
+          label,
+          style: const TextStyle(color: Colors.blueAccent, fontWeight: FontWeight.bold),
+        ),
+      ),
     );
   }
 }
