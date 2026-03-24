@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mini_project/kuis_perakapan.dart';
+import 'package:mini_project/kuis_peracakapan.dart';
 import 'package:mini_project/kuis_verb.dart';
 
 class HalamanKuis extends StatelessWidget {
