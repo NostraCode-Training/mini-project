@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mini_project/halaman_kuis.dart';
 import 'package:mini_project/liastu.dart';
 import 'package:mini_project/home.dart';
+import 'package:mini_project/profil.dart';
 
 final ValueNotifier<int> _indexNotifier = ValueNotifier<int>(0);
 
@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-final List<Widget> page = [Home()];
+final List<Widget> page = [Home(), Profil()];
 
 class Verb extends StatelessWidget {
   const Verb({super.key});
@@ -992,140 +992,3 @@ class Percakapan3 extends StatelessWidget {
 //     return Container();
 //   }
 // }
-
-class Profil extends StatelessWidget {
-  const Profil({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.blue[50],
-      appBar: AppBar(
-        title: const Text('Your Profile', style: TextStyle(fontWeight: FontWeight.bold)),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 0,
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(right: 15),
-            child: Icon(Icons.favorite, color: Colors.pinkAccent),
-          ),
-        ],
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(25),
-                border: Border.all(color: Colors.pink[50]!),
-                boxShadow: [BoxShadow(color: Colors.purple[50]!, blurRadius: 15)],
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  CircleAvatar(
-                    radius: 45,
-                    backgroundColor: Colors.pink[100],
-                    child: const CircleAvatar(
-                      radius: 41,
-                      backgroundColor: Colors.white,
-                      backgroundImage: NetworkImage(
-                        'data:image/jpeg;base64,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',
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 20),
-                  const Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Izzahtul Mahdiyah', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-                        Text('Age : 19', style: TextStyle(color: Colors.grey)),
-                        Text('Andalas University', style: TextStyle(color: Colors.purple)),
-                        Text(
-                          'Learning English Course ✨',
-                          style: TextStyle(color: Colors.blueAccent, fontWeight: FontWeight.w500),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            const SizedBox(height: 30),
-            const Text("Overall Progress", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 15),
-
-            Container(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: Colors.blue[50]!),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('My Learning Path', style: TextStyle(fontWeight: FontWeight.w500)),
-                      Text(
-                        '100%',
-                        style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: LinearProgressIndicator(
-                      value: 1.0,
-                      backgroundColor: Colors.blue[50],
-                      valueColor: const AlwaysStoppedAnimation<Color>(Colors.green),
-                      minHeight: 10,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  const Text('6 Of 6 lesson completed', style: TextStyle(color: Colors.grey, fontSize: 12)),
-                ],
-              ),
-            ),
-
-            const SizedBox(height: 30),
-
-            const Text("My Courses", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 15),
-            Progress(
-              title: 'Conversetion',
-              progress: 10,
-              color: Colors.blue,
-              tujuan: const Conversation(),
-              icon: Icons.record_voice_over,
-            ),
-            Progress(
-              title: 'Vocabulry',
-              progress: 10,
-              color: Colors.orange,
-              tujuan: const Verb(),
-              icon: Icons.auto_stories_rounded,
-            ),
-            Progress(
-              title: 'Quizz',
-              progress: 10,
-              color: Colors.cyanAccent,
-              tujuan: HalamanKuis(),
-              icon: Icons.spellcheck_rounded,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}

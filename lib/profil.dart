@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mini_project/halaman_kuis.dart';
 import 'package:mini_project/home_conversation.dart';
 import 'package:mini_project/home_verb.dart';
 import 'package:mini_project/liastu.dart';
@@ -27,7 +28,6 @@ class Profil extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // KOTAK PROFIL
             Container(
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
@@ -46,7 +46,7 @@ class Profil extends StatelessWidget {
                       radius: 41,
                       backgroundColor: Colors.white,
                       backgroundImage: NetworkImage(
-                        'https://instagram.fbdo9-1.fna.fbcdn.net/v/t51.82787-19/539287142_18325279573234466_5395290407969283045_n.jpg?efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=instagram.fbdo9-1.fna.fbcdn.net&_nc_cat=102&_nc_oc=Q6cZ2gFFmKGEHtYYJkucYzbWxN0FoduI1h9rVxEyQ9ZZXdz-7HR6mHrz9Y9600l9M4SsUH9aElws5X2HGk1D847G5-BO&_nc_ohc=iqrmUK6hhFEQ7kNvwFBtYxZ&_nc_gid=N654RoLnf8dMlgVqZUJNcA&edm=ALGbJPMBAAAA&ccb=7-5&oh=00_AfzS4VCxdp86tC5s6z3uWTM-eZOZ2mh5NRW9fnSI4MimZA&oe=69C14C49&_nc_sid=7d3ac5',
+                        'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjj0q2cmXdPOc_zOyYOt52g8NGcLV7LqqjM5JrhQuPPdyYT9HjFGe7JR2mNUs1vAfJmi_KQKzs7b-CyA14BnEGKvyT5tSvbzkR6sVfu_gehocOaxIiAktiPB-1oofJbffBybrKJ-qi4_i4/s640/Lisa-BLACKPINK.png',
                       ),
                     ),
                   ),
@@ -73,7 +73,6 @@ class Profil extends StatelessWidget {
             const Text("Overall Progress", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             const SizedBox(height: 15),
 
-            // KOTAK PROGRESS
             Container(
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
@@ -127,6 +126,13 @@ class Profil extends StatelessWidget {
               color: Colors.orange,
               tujuan: const Verb(),
               icon: Icons.auto_stories_rounded,
+            ),
+            Progress(
+              title: 'Quizz',
+              progress: 10,
+              color: Colors.cyanAccent,
+              tujuan: HalamanKuis(),
+              icon: Icons.spellcheck_rounded,
             ),
           ],
         ),
