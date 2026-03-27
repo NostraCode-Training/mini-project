@@ -72,7 +72,6 @@ class Kerja1 extends StatelessWidget {
                     const Text('Tabel contoh Verb 1:', style: TextStyle(fontWeight: FontWeight.bold)),
                     const SizedBox(height: 10),
 
-                    // Tabel Biru Pastel
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
