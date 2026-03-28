@@ -42,7 +42,7 @@ class HalamanKuis extends StatelessWidget {
                         ),
                         SizedBox(height: 25),
                         Text(
-                          '1. Pilih salah satu kategori quiz di bawah.\n2. Baca pertanyaan/pernyataan di dalam quiz dengan teliti.\n3. Tentukan apakah itu benar(True) atau salah(False).',
+                          '1. Pilih salah satu kategori quiz di bawah.\n2. Baca pertanyaan/pernyataan di dalam quiz dengan teliti.\n3. Tentukan apakah itu benar (True) atau salah (False).',
                           style: TextStyle(fontSize: 16, color: Color(0xFF546E7A)),
                         ),
                         SizedBox(height: 15),

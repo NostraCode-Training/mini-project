@@ -109,7 +109,7 @@ class Home extends StatelessWidget {
                             minHeight: 12,
                           ),
                         ),
-                        Text('6 of 6 lesson complated', style: TextStyle(color: Colors.grey)),
+                        Text('6 of 6 lessons completed', style: TextStyle(color: Colors.grey)),
                       ],
                     ),
                   ),

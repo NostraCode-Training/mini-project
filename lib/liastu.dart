@@ -27,6 +27,7 @@ class Progress extends StatelessWidget {
   final Color color;
   final Widget tujuan;
   final IconData icon;
+  final Text teks;
 
   const Progress({
     super.key,
@@ -35,6 +36,7 @@ class Progress extends StatelessWidget {
     required this.color,
     required this.tujuan,
     required this.icon,
+    required this.teks,
   });
 
   @override
@@ -77,7 +79,7 @@ class Progress extends StatelessWidget {
                 minHeight: 6,
               ),
             ),
-            Text('3 of 3 lesson complated', style: TextStyle(color: Colors.grey)),
+            teks,
           ],
         ),
       ),
