@@ -192,6 +192,7 @@ class Tips extends StatelessWidget {
 Widget card(String kategori, String judul, String isi, IconData icon, Color warna) {
   return Container(
     width: 250,
+    height: 250,
     margin: const EdgeInsets.only(right: 15),
     padding: const EdgeInsets.all(20),
     decoration: BoxDecoration(
@@ -200,6 +201,7 @@ Widget card(String kategori, String judul, String isi, IconData icon, Color warn
       border: Border.all(color: warna, width: 2),
     ),
     child: Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Icon(icon, size: 50, color: warna),
         const SizedBox(height: 15),
@@ -213,6 +215,7 @@ Widget card(String kategori, String judul, String isi, IconData icon, Color warn
           textAlign: TextAlign.center,
           style: const TextStyle(fontSize: 13, color: Colors.black54, height: 1.4),
         ),
+        const Spacer(),
         const SizedBox(height: 15),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
