@@ -26,7 +26,6 @@ class AboutUsPage extends StatelessWidget {
           ),
           body: Stack(
             children: [
-              // Positioned(top: -50, right: -50, child: CircleAvatar(radius: 100, backgroundColor: Colors.white)),
               SingleChildScrollView(
                 padding: const EdgeInsets.all(20),
                 child: Column(
