@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mini_project/halaman_aboutUs.dart';
 import 'package:mini_project/halaman_kuis.dart';
 import 'package:mini_project/home_conversation.dart';
 import 'package:mini_project/home_verb.dart';
@@ -59,7 +60,7 @@ class Profil extends StatelessWidget {
                         Text('Age : 19', style: TextStyle(color: Colors.grey)),
                         Text('Andalas University', style: TextStyle(color: Colors.purple)),
                         Text(
-                          'Learning English Course ✨',
+                          'English Learning Course ✨',
                           style: TextStyle(color: Colors.blueAccent, fontWeight: FontWeight.w500),
                         ),
                       ],
@@ -136,6 +137,24 @@ class Profil extends StatelessWidget {
               tujuan: HalamanKuis(),
               icon: Icons.spellcheck_rounded,
               teks: Text('2 of 2 lessons completed', style: TextStyle(color: Colors.grey)),
+            ),
+            // Letakkan ini di dalam Column atau ListView di halaman Profile kamu
+            Card(
+              margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+              child: ListTile(
+                leading: Container(
+                  padding: EdgeInsets.all(8),
+                  decoration: BoxDecoration(color: Colors.blue[100], shape: BoxShape.circle),
+                  child: Icon(Icons.groups_rounded, color: Colors.blue[800]),
+                ),
+                title: Text('About Us', style: TextStyle(fontWeight: FontWeight.bold)),
+                subtitle: Text('Kenali tim dibalik English Learning Course'),
+                trailing: Icon(Icons.arrow_forward_ios, size: 16), // Tanda panah ke kanan
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => AboutUsPage()));
+                },
+              ),
             ),
           ],
         ),
