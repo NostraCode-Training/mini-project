@@ -41,8 +41,7 @@ class MyApp extends StatelessWidget {
                   selectedItemColor: Colors.blueAccent,
                   unselectedItemColor: Colors.blue[100],
                   selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
-                  type: BottomNavigationBarType.fixed, // Agar posisi tetap tenang/stabil
-                  // --------------------------------
+                  type: BottomNavigationBarType.fixed,
                   onTap: (val) => _indexNotifier.value = val,
                   items: const [
                     BottomNavigationBarItem(icon: Icon(Icons.home_rounded), label: 'Home'),

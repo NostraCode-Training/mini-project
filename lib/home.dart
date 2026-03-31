@@ -3,6 +3,7 @@ import 'package:mini_project/daily_tips.dart';
 import 'package:mini_project/home_conversation.dart';
 import 'package:mini_project/home_verb.dart';
 import 'package:mini_project/halaman_kuis.dart';
+import 'package:mini_project/timetable.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -113,6 +114,64 @@ class Home extends StatelessWidget {
                       ],
                     ),
                   ),
+                  const SizedBox(height: 15),
+                  Container(
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(25),
+                      border: Border.all(color: Colors.blue.shade100, width: 2),
+                      boxShadow: [
+                        BoxShadow(color: Colors.blueAccent.withAlpha(20), blurRadius: 20, offset: const Offset(0, 10)),
+                      ],
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Icon(Icons.event_note, size: 48, color: Colors.orange),
+                        const SizedBox(width: 20),
+                        Expanded(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                'YOUR WEEKLY STUDY PLAN',
+                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.orange),
+                              ),
+                              Text(
+                                'Check your recommended learning schedule',
+                                style: TextStyle(fontSize: 12, color: Colors.black54),
+                              ),
+                              Center(
+                                child: Container(
+                                  padding: const EdgeInsets.all(8),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(15),
+                                    boxShadow: [BoxShadow(color: Colors.black.withAlpha(10), blurRadius: 5)],
+                                  ),
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.push(context, MaterialPageRoute(builder: (context) => Jadwal()));
+                                    },
+                                    child: Text(
+                                      'VIEW TIMETABLE',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14,
+                                        color: Colors.orange[800],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
                   const SizedBox(height: 30),
                   const Text(
                     "Hi, What would you learn today?",
