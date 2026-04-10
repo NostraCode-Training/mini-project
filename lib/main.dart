@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
       title: 'Learning English Course',
 
       theme: ThemeData(primarySwatch: Colors.blue),
+
       home: Center(
         child: Container(
           constraints: const BoxConstraints(maxWidth: 450),

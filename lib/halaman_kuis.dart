@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mini_project/home.dart';
 import 'package:mini_project/kuis_percakapan.dart';
 import 'package:mini_project/kuis_verb.dart';
 
@@ -79,7 +78,7 @@ class HalamanKuis extends StatelessWidget {
                   Center(
                     child: TextButton(
                       onPressed: () {
-                        Navigator.pop(context, MaterialPageRoute(builder: (context) => const Home()));
+                        Navigator.popUntil(context, (route) => route.isFirst);
                       },
                       child: const Text(
                         '← Back to Home',

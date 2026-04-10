@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mini_project/halaman_kuis.dart';
-import 'package:mini_project/home.dart';
 
 class Percakapan1 extends StatelessWidget {
   const Percakapan1({super.key});
@@ -420,7 +419,7 @@ class Percakapan3 extends StatelessWidget {
                       shape: const StadiumBorder(),
                     ),
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const Home()));
+                      Navigator.popUntil(context, (route) => route.isFirst);
                     },
                     child: const Text(
                       'Selesai ✓ & keluar',

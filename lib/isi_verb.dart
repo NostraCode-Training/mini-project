@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mini_project/home.dart';
 import 'package:mini_project/home_conversation.dart';
 
 class Kerja1 extends StatelessWidget {
@@ -588,7 +587,7 @@ class Kerja3 extends StatelessWidget {
                       shape: const StadiumBorder(),
                     ),
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const Home()));
+                      Navigator.popUntil(context, (route) => route.isFirst);
                     },
                     child: const Text(
                       'Selesai ✓ & keluar',
